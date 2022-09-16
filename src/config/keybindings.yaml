@@ -1,0 +1,1002 @@
+#
+# --- disable conflicting, disturbing or simply useless keys ---
+- key: ctrl+q
+  command: '-workbench.action.quickOpenView'
+- key: ctrl+q
+  command: '-workbench.action.quickOpenNavigateNextInViewPicker'
+  when: inQuickOpen && inViewsPicker
+- key: ctrl+shift+q
+  command: '-workbench.action.quickOpenNavigatePreviousInViewPicker'
+  when: inQuickOpen && inViewsPicker
+- key: ctrl+k ctrl+alt+s
+  command: '-git.stageSelectedRanges'
+  when: isInDiffEditor
+- key: shift+alt+a
+  command: '-editor.action.blockComment'
+  when: editorTextFocus && !editorReadonly
+- key: alt+w
+  command: '-toggleSearchEditorWholeWord'
+  when: inSearchEditor && searchInputBoxFocus
+- key: alt+w
+  command: '-toggleFindWholeWord'
+  when: editorFocus
+- key: alt+w
+  command: '-toggleSearchWholeWord'
+  when: searchViewletFocus
+- key: alt+z
+  command: '-editor.action.toggleWordWrap'
+- key: ctrl+pagedown
+  command: '-workbench.action.nextEditor'
+- key: ctrl+pageup
+  command: '-workbench.action.previousEditor'
+- key: shift+alt+1
+  command: '-workbench.action.moveEditorToFirstGroup'
+- key: ctrl+k ctrl+1
+  command: '-editor.foldLevel1'
+  when: editorTextFocus && foldingEnabled
+- key: ctrl+shift+1
+  command: '-editor.action.replaceOne'
+  when: editorFocus && findWidgetVisible
+- key: ctrl+shift+1
+  command: '-search.action.replace'
+  when: matchFocus && replaceActive && searchViewletVisible
+- key: ctrl+shift+1
+  command: '-search.action.replaceAllInFile'
+  when: fileMatchFocus && replaceActive && searchViewletVisible
+- key: ctrl+shift+1
+  command: '-search.action.replaceAllInFolder'
+  when: folderMatchFocus && replaceActive && searchViewletVisible
+- key: ctrl+k ctrl+2
+  command: '-editor.foldLevel2'
+  when: editorTextFocus && foldingEnabled
+- key: alt+left
+  command: '-workbench.action.quickInputBack'
+  when: inQuickOpen
+- key: ctrl+right
+  command: '-breadcrumbs.focusNext'
+  when: breadcrumbsActive && breadcrumbsVisible
+- key: ctrl+right
+  command: '-breadcrumbs.focusNextWithPicker'
+  when: breadcrumbsActive && breadcrumbsVisible && listFocus && !inputFocus
+- key: ctrl+right
+  command: '-cursorWordEndRight'
+  when: textInputFocus && !accessibilityModeEnabled
+- key: ctrl+shift+alt+right
+  command: '-cursorColumnSelectRight'
+  when: textInputFocus
+- key: ctrl+shift+right
+  command: '-cursorWordEndRightSelect'
+  when: textInputFocus && !accessibilityModeEnabled
+- key: ctrl+k right
+  command: '-views.moveViewRight'
+  when: focusedView != ''
+- key: ctrl+k right
+  command: '-workbench.action.moveActiveEditorGroupRight'
+- key: ctrl+k left
+  command: '-workbench.action.moveActiveEditorGroupLeft'
+- key: ctrl+left
+  command: '-breadcrumbs.focusPrevious'
+  when: breadcrumbsActive && breadcrumbsVisible
+- key: ctrl+left
+  command: '-breadcrumbs.focusPreviousWithPicker'
+  when: breadcrumbsActive && breadcrumbsVisible && listFocus && !inputFocus
+- key: ctrl+shift+alt+left
+  command: '-cursorColumnSelectLeft'
+  when: textInputFocus
+- key: ctrl+left
+  command: '-cursorWordLeft'
+  when: textInputFocus && !accessibilityModeEnabled
+- key: ctrl+shift+left
+  command: '-cursorWordLeftSelect'
+  when: textInputFocus && !accessibilityModeEnabled
+- key: ctrl+left
+  command: '-list.collapseAll'
+  when: listFocus && !inputFocus
+- key: ctrl+k left
+  command: '-views.moveViewLeft'
+  when: focusedView != ''
+- key: ctrl+shift+space
+  command: '-editor.action.triggerParameterHints'
+  when: editorHasSignatureHelpProvider && editorTextFocus
+- key: ctrl+f2
+  command: '-editor.action.changeAll'
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+shift+f2
+  command: '-editor.action.linkedEditing'
+  when: editorHasRenameProvider && editorTextFocus && !editorReadonly
+- key: shift+alt+r
+  command: '-revealFileInOS'
+  when: '!editorFocus'
+- key: alt+r
+  command: '-toggleSearchEditorRegex'
+  when: inSearchEditor && searchInputBoxFocus
+- key: alt+r
+  command: '-toggleFindRegex'
+  when: editorFocus
+- key: alt+r
+  command: '-toggleSearchRegex'
+  when: searchViewletFocus
+- key: shift+alt+c
+  command: '-copyFilePath'
+  when: '!editorFocus'
+- key: alt+c
+  command: '-toggleSearchEditorCaseSensitive'
+  when: inSearchEditor && searchInputBoxFocus
+- key: shift+alt+c
+  command: '-search.action.copyPath'
+  when: fileMatchOrFolderMatchWithResourceFocus
+- key: alt+c
+  command: '-toggleFindCaseSensitive'
+  when: editorFocus
+- key: alt+c
+  command: '-toggleSearchCaseSensitive'
+  when: searchViewletFocus
+- key: shift+alt+oem_period
+  command: '-editor.action.autoFix'
+  when: editorTextFocus && !editorReadonly && supportedCodeAction =~ /(\s|^)quickfix\b/
+- key: f2
+  command: '-remote.tunnel.label'
+  when: tunnelViewFocus && tunnelType == 'Forwarded' && tunnelViewMultiSelection == 'undefined'
+- key: f2
+  command: '-renameFile'
+  when: explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus
+- key: ctrl+k f2
+  command: '-togglePeekWidgetFocus'
+  when: inReferenceSearchEditor || referenceSearchVisible
+- key: f3
+  command: -list.find
+  when: listFocus && listSupportsFind
+- key: alt+f3
+  command: '-editor.action.dirtydiff.next'
+  when: editorTextFocus && !textCompareEditorActive
+- key: shift+alt+f3
+  command: '-editor.action.dirtydiff.previous'
+  when: editorTextFocus && !textCompareEditorActive
+- key: f3
+  command: '-editor.action.nextMatchFindAction'
+  when: editorFocus
+- key: ctrl+f3
+  command: '-editor.action.nextSelectionMatchFindAction'
+  when: editorFocus
+- key: shift+f3
+  command: '-editor.action.previousMatchFindAction'
+  when: editorFocus
+- key: ctrl+shift+f3
+  command: '-editor.action.previousSelectionMatchFindAction'
+  when: editorFocus
+- key: shift+alt+h
+  command: '-references-view.showCallHierarchy'
+  when: editorHasCallHierarchyProvider
+- key: shift+alt+h
+  command: '-editor.showCallHierarchy'
+  when: editorHasCallHierarchyProvider && editorTextFocus && !inReferenceSearchEditor
+- key: shift+alt+h
+  command: '-editor.showIncomingCalls'
+  when: callHierarchyVisible && callHierarchyDirection == 'outgoingCalls'
+- key: shift+alt+h
+  command: '-editor.showOutgoingCalls'
+  when: callHierarchyVisible && callHierarchyDirection == 'incomingCalls'
+- key: shift+alt+h
+  command: '-editor.showSubtypes'
+  when: typeHierarchyVisible && typeHierarchyDirection == 'supertypes'
+- key: shift+alt+h
+  command: '-editor.showSupertypes'
+  when: typeHierarchyVisible && typeHierarchyDirection == 'subtypes'
+- key: ctrl+k ctrl+c
+  command: '-editor.action.addCommentLine'
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+k ctrl+u
+  command: '-editor.action.removeCommentLine'
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+k ctrl+oem_2
+  command: '-editor.foldAllBlockComments'
+  when: editorTextFocus && foldingEnabled
+- key: ctrl+shift+tab
+  command: '-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup'
+  when: '!activeEditorGroupEmpty'
+- key: ctrl+tab
+  command: '-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup'
+  when: '!activeEditorGroupEmpty'
+- key: ctrl+tab
+  command: '-workbench.action.quickOpenNavigateNextInEditorPicker'
+  when: inEditorsPicker && inQuickOpen
+- key: ctrl+shift+tab
+  command: '-workbench.action.quickOpenNavigatePreviousInEditorPicker'
+  when: inEditorsPicker && inQuickOpen
+- key: ctrl+shift+oem_4
+  command: '-editor.fold'
+  when: editorTextFocus && foldingEnabled
+- key: ctrl+k ctrl+oem_4
+  command: '-editor.foldRecursively'
+  when: editorTextFocus && foldingEnabled
+- key: ctrl+oem_4
+  command: '-editor.action.outdentLines'
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+oem_6
+  command: '-editor.action.indentLines'
+  when: editorTextFocus && !editorReadonly
+- key: ctrl+shift+oem_6
+  command: '-editor.unfold'
+  when: editorTextFocus && foldingEnabled
+- key: ctrl+k ctrl+oem_6
+  command: '-editor.unfoldRecursively'
+  when: editorTextFocus && foldingEnabled
+- key: ctrl+end
+  command: '-cursorBottom'
+  when: textInputFocus
+- key: ctrl+shift+end
+  command: '-cursorBottomSelect'
+  when: textInputFocus
+- key: ctrl+end
+  command: '-interactive.scrollToBottom'
+  when: resourceScheme == 'vscode-interactive'
+- key: ctrl+home
+  command: '-cursorTop'
+  when: textInputFocus
+- key: ctrl+shift+home
+  command: '-cursorTopSelect'
+  when: textInputFocus
+- key: ctrl+home
+  command: '-interactive.scrollToTop'
+  when: resourceScheme == 'vscode-interactive'
+- key: ctrl+pagedown
+  command: '-workbench.action.debug.nextConsole'
+  when: inDebugRepl
+- key: ctrl+k ctrl+down
+  command: '-workbench.action.focusBelowGroup'
+- key: ctrl+k down
+  command: '-workbench.action.moveActiveEditorGroupDown'
+- key: ctrl+shift+pagedown
+  command: '-workbench.action.moveEditorRightInGroup'
+- key: ctrl+shift+alt+down
+  command: '-cursorColumnSelectDown'
+  when: textInputFocus
+- key: ctrl+shift+alt+pagedown
+  command: '-cursorColumnSelectPageDown'
+  when: textInputFocus
+- key: ctrl+shift+down
+  command: '-cursorDownSelect'
+  when: textInputFocus
+- key: ctrl+down
+  command: '-focusNextCodeAction'
+  when: CodeActionMenuVisible
+- key: ctrl+down
+  command: '-keybindings.editor.focusKeybindings'
+  when: inKeybindings && inKeybindingsSearch
+- key: ctrl+down
+  command: '-list.scrollDown'
+  when: listFocus && !inputFocus
+- key: ctrl+down
+  command: '-problems.action.focusProblemsFromFilter'
+  when: problemsFilterFocus
+- key: ctrl+down
+  command: '-scrollLineDown'
+  when: textInputFocus
+- key: ctrl+down
+  command: '-search.focus.nextInputBox'
+  when: inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible
+- key: ctrl+k down
+  command: '-views.moveViewDown'
+  when: focusedView != ''
+- key: ctrl+pageup
+  command: '-workbench.action.debug.prevConsole'
+  when: inDebugRepl
+- key: ctrl+k ctrl+up
+  command: '-workbench.action.focusAboveGroup'
+- key: ctrl+k up
+  command: '-workbench.action.moveActiveEditorGroupUp'
+- key: ctrl+shift+pageup
+  command: '-workbench.action.moveEditorLeftInGroup'
+- key: ctrl+shift+alt+pageup
+  command: '-cursorColumnSelectPageUp'
+  when: textInputFocus
+- key: ctrl+shift+alt+up
+  command: '-cursorColumnSelectUp'
+  when: textInputFocus
+- key: ctrl+shift+up
+  command: '-cursorUpSelect'
+  when: textInputFocus
+- key: ctrl+up
+  command: '-focusPreviousCodeAction'
+  when: CodeActionMenuVisible
+- key: ctrl+up
+  command: '-list.scrollUp'
+  when: listFocus && !inputFocus
+- key: ctrl+up
+  command: '-scrollLineUp'
+  when: textInputFocus
+- key: ctrl+up
+  command: '-search.action.focusSearchFromResults'
+  when: firstMatchFocus && searchViewletVisible
+- key: ctrl+up
+  command: '-search.focus.previousInputBox'
+  when: inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible && !searchInputBoxFocus
+- key: ctrl+k up
+  command: '-views.moveViewUp'
+  when: focusedView != ''
+- key: ctrl+delete
+  command: '-deleteWordRight'
+  when: textInputFocus && !editorReadonly
+- key: ctrl+shift+v
+  command: '-notebook.cell.pasteAbove'
+  when: notebookEditorFocused && !inputFocus
+- key: ctrl+shift+v
+  command: '-workbench.action.terminal.paste'
+  when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: ctrl+shift+v
+  command: '-markdown.showPreview'
+  when: "!notebookEditorFocused && editorLangId == 'markdown'"
+
+  # Command Runner
+- key: 'ctrl+shift+r'
+  command: '-command-runner.run'
+- key: 'ctrl+alt+r'
+  command: '-command-runner.runInTerminal'
+
+  # GitLens
+- key: alt+s
+  command: '-gitlens.showQuickRepoStatus'
+  when: "!gitlens:disabled && config.gitlens.keymap == 'alternate'"
+- key: alt+right
+  command: '-gitlens.key.alt+right'
+  when: gitlens:key:alt+right
+- key: alt+left
+  command: '-gitlens.key.alt+left'
+  when: gitlens:key:alt+left
+- key: ctrl+right
+  command: '-gitlens.key.ctrl+right'
+  when: gitlens:key:ctrl+right
+- key: ctrl+left
+  command: '-gitlens.key.ctrl+left'
+  when: gitlens:key:ctrl+left
+- key: alt+c
+  command: '-gitlens.showQuickCommitFileDetails'
+  when: editorTextFocus && !gitlens:disabled && config.gitlens.keymap == 'alternate'
+- key: alt+oem_2
+  command: '-gitlens.gitCommands'
+  when: "!gitlens:disabled && config.gitlens.keymap == 'alternate'"
+- key: alt+oem_period
+  command: '-gitlens.diffWithNext'
+  when: editorTextFocus && !isInDiffEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /revision/
+- key: alt+oem_period
+  command: '-gitlens.diffWithNextInDiffLeft'
+  when: editorTextFocus && isInDiffEditor && !isInDiffRightEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /revision/
+- key: alt+oem_period
+  command: '-gitlens.diffWithNextInDiffRight'
+  when: editorTextFocus && isInDiffRightEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /revision/
+- key: alt+oem_comma
+  command: '-gitlens.diffWithPrevious'
+  when: editorTextFocus && !isInDiffEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /tracked/
+- key: alt+oem_comma
+  command: '-gitlens.diffWithPreviousInDiffLeft'
+  when: editorTextFocus && isInDiffEditor && !isInDiffRightEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /tracked/
+- key: alt+oem_comma
+  command: '-gitlens.diffWithPreviousInDiffRight'
+  when: editorTextFocus && isInDiffRightEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /tracked/
+- key: shift+alt+oem_period
+  command: '-gitlens.diffWithWorking'
+  when: editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /revision/
+- key: shift+alt+oem_comma
+  command: '-gitlens.diffLineWithPrevious'
+  when: editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /tracked/
+- key: alt+oem_comma
+  command: '-gitlens.key.alt+,'
+  when: gitlens:key:,
+- key: alt+oem_period
+  command: '-gitlens.key.alt+.'
+  when: gitlens:key:.
+- key: alt+h
+  command: '-gitlens.showQuickFileHistory'
+  when: "!gitlens:disabled && config.gitlens.keymap == 'alternate'"
+- key: shift+alt+h
+  command: '-gitlens.showQuickRepoHistory'
+  when: "!gitlens:disabled && config.gitlens.keymap == 'alternate'"
+
+  # Multiple clipboards
+- key: ctrl+shift+v
+  command: '-multiclip.paste'
+  when: editorTextFocus && editorLangId != 'markdown'
+
+  # Tabnine
+- key: alt+oem_period
+  command: '-tabnine.snippet-suggestion'
+  when: tabnine.snippet-suggestion:enabled
+
+  # debugging
+- key: f2
+  command: '-debug.renameWatchExpression'
+  when: watchExpressionsFocused
+- key: f2
+  command: '-debug.setVariable'
+  when: variablesFocused
+- key: f5
+  command: '-workbench.action.debug.start'
+  when: debuggersAvailable && debugState == 'inactive'
+- key: shift+f5
+  command: '-workbench.action.debug.stop'
+  when: inDebugMode && !focusedSessionIsAttach
+- key: f5
+  command: '-workbench.action.debug.continue'
+  when: debugState == 'stopped'
+- key: shift+f5
+  command: '-workbench.action.debug.disconnect'
+  when: focusedSessionIsAttach && inDebugMode
+- key: ctrl+shift+f5
+  command: '-workbench.action.debug.restart'
+  when: inDebugMode
+- key: f5
+  command: '-debug.openView'
+  when: '!debuggersAvailable'
+- key: ctrl+f5
+  command: '-debug.openView'
+  when: '!debuggersAvailable'
+- key: shift+f9
+  command: '-editor.debug.action.toggleInlineBreakpoint'
+  when: editorTextFocus
+- key: f9
+  command: '-editor.debug.action.toggleBreakpoint'
+  when: debuggersAvailable && editorTextFocus
+- key: alt+f9
+  command: '-editor.action.nextCommentThreadAction'
+  when: editorFocus
+- key: shift+alt+f9
+  command: '-editor.action.previousCommentThreadAction'
+  when: editorFocus
+- key: f10
+  command: '-extension.node-debug.startWithStopOnEntry'
+  when: "!inDebugMode && debugConfigurationType == 'node' || !inDebugMode && debugConfigurationType == 'pwa-extensionHost' || !inDebugMode && debugConfigurationType == 'pwa-node'"
+- key: f10
+  command: '-workbench.action.debug.stepOver'
+  when: debugState == 'stopped'
+
+  # notebook
+- key: ctrl+shift+oem_4
+  command: '-notebook.fold'
+  when: notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'
+- key: ctrl+shift+oem_6
+  command: '-notebook.unfold'
+  when: notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'
+- key: ctrl+end
+  command: '-notebook.focusBottom'
+  when: notebookEditorFocused && !inputFocus
+- key: ctrl+home
+  command: '-notebook.focusTop'
+  when: notebookEditorFocused && !inputFocus
+- key: ctrl+down
+  command: '-notebook.cell.focusInOutput'
+  when: notebookCellHasOutputs && notebookEditorFocused
+- key: ctrl+down
+  command: '-notebook.focusNextEditor'
+  when: notebookEditorFocused && notebookOutputFocused
+- key: ctrl+up
+  command: '-notebook.cell.focusOutOutput'
+  when: notebookEditorFocused
+
+  # suggestions
+- key: alt+oem_6
+  command: '-editor.action.inlineSuggest.showNext'
+  when: inlineSuggestionVisible && !editorReadonly
+- key: alt+oem_4
+  command: '-editor.action.inlineSuggest.showPrevious'
+  when: inlineSuggestionVisible && !editorReadonly
+- key: ctrl+space
+  command: '-toggleSuggestionDetails'
+  when: suggestWidgetVisible && textInputFocus
+- key: ctrl+alt+space
+  command: '-toggleSuggestionFocus'
+  when: suggestWidgetVisible && textInputFocus
+- key: ctrl+pageup
+  command: '-selectPrevPageSuggestion'
+  when: suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus
+- key: ctrl+up
+  command: '-selectPrevSuggestion'
+  when: suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus
+- key: ctrl+pagedown
+  command: '-selectNextPageSuggestion'
+  when: suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus
+- key: ctrl+down
+  command: '-selectNextSuggestion'
+  when: suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus
+- key: 'ctrl+u'
+  command: '-cursorUndo'
+  when: 'textInputFocus'
+
+  # tabs
+- key: alt+1
+  command: '-workbench.action.openEditorAtIndex1'
+- key: alt+2
+  command: '-workbench.action.openEditorAtIndex2'
+- key: alt+3
+  command: '-workbench.action.openEditorAtIndex3'
+- key: alt+4
+  command: '-workbench.action.openEditorAtIndex4'
+- key: alt+5
+  command: '-workbench.action.openEditorAtIndex5'
+- key: alt+6
+  command: '-workbench.action.openEditorAtIndex6'
+- key: alt+7
+  command: '-workbench.action.openEditorAtIndex7'
+- key: alt+8
+  command: '-workbench.action.openEditorAtIndex8'
+- key: alt+9
+  command: '-workbench.action.openEditorAtIndex9'
+- key: ctrl+1
+  command: '-workbench.action.focusFirstEditorGroup'
+- key: ctrl+2
+  command: '-workbench.action.focusSecondEditorGroup'
+- key: ctrl+3
+  command: '-workbench.action.focusThirdEditorGroup'
+- key: ctrl+4
+  command: '-workbench.action.focusFourthEditorGroup'
+- key: ctrl+5
+  command: '-workbench.action.focusFifthEditorGroup'
+- key: ctrl+6
+  command: '-workbench.action.focusSixthEditorGroup'
+- key: ctrl+7
+  command: '-workbench.action.focusSeventhEditorGroup'
+- key: ctrl+8
+  command: '-workbench.action.focusEighthEditorGroup'
+
+  # terminal
+- key: alt+w
+  command: '-workbench.action.terminal.toggleFindWholeWord'
+  when: terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: alt+z
+  command: '-workbench.action.terminal.sizeToContentWidth'
+  when: terminalFocus && terminalHasBeenCreated && terminalIsOpen || terminalFocus && terminalIsOpen && terminalProcessSupported
+- key: ctrl+shift+2
+  command: '-workbench.action.terminal.sendSequence'
+  when: terminalFocus
+- key: alt+r
+  command: '-workbench.action.terminal.toggleFindRegex'
+  when: terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: alt+c
+  command: '-workbench.action.terminal.toggleFindCaseSensitive'
+  when: terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: f2
+  command: '-workbench.action.terminal.renameInstance'
+  when: terminalHasBeenCreated && terminalTabsFocus && terminalTabsSingularSelection || terminalProcessSupported && terminalTabsFocus && terminalTabsSingularSelection
+- key: f3
+  command: '-workbench.action.terminal.findNext'
+  when: terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: shift+f3
+  command: '-workbench.action.terminal.findPrevious'
+  when: terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: ctrl+shift+oem_3
+  command: '-workbench.action.terminal.new'
+  when: terminalProcessSupported || terminalWebExtensionContributedProfile
+- key: ctrl+shift+5
+  command: '-workbench.action.terminal.split'
+  when: terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile
+- key: ctrl+shift+5
+  command: '-workbench.action.terminal.splitInstance'
+  when: terminalProcessSupported && terminalTabsFocus
+- key: ctrl+down
+  command: '-workbench.action.terminal.navigationModeFocusNext'
+  when: accessibilityModeEnabled && terminalA11yTreeFocus && terminalProcessSupported || accessibilityModeEnabled && terminalFocus && terminalProcessSupported
+- key: ctrl+alt+pagedown
+  command: '-workbench.action.terminal.scrollDown'
+  when: terminalFocus && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocus && terminalProcessSupported && !terminalAltBufferActive
+- key: ctrl+shift+down
+  command: '-workbench.action.terminal.selectToNextCommand'
+  when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: ctrl+up
+  command: '-workbench.action.terminal.navigationModeFocusPrevious'
+  when: accessibilityModeEnabled && terminalA11yTreeFocus && terminalProcessSupported || accessibilityModeEnabled && terminalFocus && terminalProcessSupported
+- key: ctrl+alt+pageup
+  command: '-workbench.action.terminal.scrollUp'
+  when: terminalFocus && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocus && terminalProcessSupported && !terminalAltBufferActive
+- key: ctrl+shift+up
+  command: '-workbench.action.terminal.selectToPreviousCommand'
+  when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: ctrl+delete
+  command: '-workbench.action.terminal.sendSequence'
+  when: terminalFocus
+- key: delete
+  command: '-workbench.action.terminal.killInstance'
+  when: terminalHasBeenCreated && terminalTabsFocus || terminalIsOpen && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus
+- key: ctrl+f4
+  command: '-workbench.action.terminal.killEditor'
+  when: terminalEditorFocus && terminalFocus && terminalHasBeenCreated && resourceScheme == 'vscode-terminal' || terminalEditorFocus && terminalFocus && terminalProcessSupported && resourceScheme == 'vscode-terminal'
+- key: ctrl+w
+  command: '-workbench.action.terminal.killEditor'
+  when: terminalEditorFocus && terminalFocus && terminalHasBeenCreated && resourceScheme == 'vscode-terminal' || terminalEditorFocus && terminalFocus && terminalProcessSupported && resourceScheme == 'vscode-terminal'
+- key: alt+right
+  command: '-workbench.action.terminal.focusNextPane'
+  when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+- key: alt+left
+  command: '-workbench.action.terminal.focusPreviousPane'
+  when: terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported
+
+  # testing
+- key: ctrl+oem_1 ctrl+a
+  command: '-testing.debugAll'
+- key: ctrl+oem_1 ctrl+e
+  command: '-testing.debugFailTests'
+- key: ctrl+oem_1 ctrl+l
+  command: '-testing.debugLastRun'
+- key: ctrl+oem_1 ctrl+c
+  command: '-testing.debugAtCursor'
+  when: editorTextFocus
+- key: ctrl+oem_1 ctrl+f
+  command: '-testing.debugCurrentFile'
+  when: editorTextFocus
+- key: alt+f8
+  command: '-testing.goToNextMessage'
+  when: editorFocus && testing.isPeekVisible
+- key: shift+alt+f8
+  command: '-testing.goToPreviousMessage'
+  when: editorFocus && testing.isPeekVisible
+- key: ctrl+oem_1 ctrl+m
+  command: '-testing.openOutputPeek'
+- key: ctrl+oem_1 ctrl+r
+  command: '-testing.refreshTests'
+  when: testing.canRefresh
+- key: ctrl+oem_1 e
+  command: '-testing.reRunFailTests'
+- key: ctrl+oem_1 l
+  command: '-testing.reRunLastRun'
+- key: ctrl+oem_1 a
+  command: '-testing.runAll'
+- key: ctrl+oem_1 c
+  command: '-testing.runAtCursor'
+  when: editorTextFocus
+- key: ctrl+oem_1 f
+  command: '-testing.runCurrentFile'
+  when: editorTextFocus
+- key: ctrl+oem_1 ctrl+o
+  command: '-testing.showMostRecentOutput'
+  when: testing.hasAnyResults
+- key: ctrl+oem_1 ctrl+i
+  command: '-testing.toggleInlineTestOutput'
+- key: alt+h
+  command: '-testing.toggleTestingPeekHistory'
+  when: testing.isPeekVisible
+
+  # ------- ------------------------ -------
+  # --- ------- NEW KEY MAPPINGS ------- ---
+  # ------- ------------------------ -------
+
+  #
+  # --- Browser Lite ---
+
+  # open
+- key: ctrl+f5
+  command: browse-lite.open
+
+  # refresh
+- key: f5
+  command: browse-lite.controls.refresh
+
+  # open debugging window
+- key: ctrl+shift+f5
+  command: browse-lite.controls.debug
+
+  #
+  # --- ESlint ---
+
+  # restart server
+- key: f9
+  command: eslint.restart
+
+  #
+  # --- Multiple clipboards ---
+
+  # open clipboard history
+- key: ctrl+shift+v
+  command: multiclip.list
+
+  #
+  # --- comment ---
+
+  # disable previous key
+- key: ctrl+oem_2
+  command: '-editor.action.commentLine'
+  when: editorTextFocus && !editorReadonly
+
+  # toggle line comment - [C]omment
+- key: alt+c
+  command: editor.action.commentLine
+  when: editorTextFocus && !editorReadonly
+
+  #
+  # --- cursor ---
+
+  # disable previous keys
+- key: shift+alt+i
+  command: '-editor.action.insertCursorAtEndOfEachLineSelected'
+  when: 'editorTextFocus'
+- key: ctrl+shift+l
+  command: '-selectAllSearchEditorMatches'
+  when: inSearchEditor
+- key: ctrl+shift+l
+  command: '-editor.action.selectHighlights'
+  when: editorFocus
+- key: ctrl+shift+l
+  command: '-addCursorsAtSearchResults'
+  when: fileMatchOrMatchFocus && searchViewletVisible
+
+  # move by word
+- key: alt+right
+  command: cursorWordPartRight
+- key: alt+left
+  command: cursorWordPartLeft
+
+  # move and select word
+- key: shift+alt+left
+  command: cursorWordPartLeftSelect
+- key: shift+alt+right
+  command: cursorWordPartRightSelect
+
+  # insert cursor at line end
+- key: ctrl+alt+right
+  command: 'editor.action.insertCursorAtEndOfEachLineSelected'
+  when: 'editorTextFocus'
+
+  # select all matches
+- key: alt+s
+  command: selectAllSearchEditorMatches
+  when: inSearchEditor
+- key: alt+s
+  command: editor.action.selectHighlights
+  when: editorFocus
+- key: alt+s
+  command: addCursorsAtSearchResults
+  when: fileMatchOrMatchFocus && searchViewletVisible
+
+  #
+  # --- format ---
+
+  # disable previous keys
+- key: shift+alt+f
+  command: '-notebook.formatCell'
+  when: editorHasDocumentFormattingProvider && editorTextFocus && inCompositeEditor && notebookEditable && !editorReadonly && activeEditor == 'workbench.editor.notebook'
+- key: shift+alt+f
+  command: '-editor.action.formatDocument'
+  when: editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor
+- key: shift+alt+f
+  command: '-editor.action.formatDocument.none'
+  when: editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly
+- key: shift+alt+f
+  command: '-notebook.format'
+  when: notebookEditable && !editorTextFocus && activeEditor == 'workbench.editor.notebook'
+
+  # format
+- key: alt+f
+  command: notebook.formatCell
+  when: editorHasDocumentFormattingProvider && editorTextFocus && inCompositeEditor && notebookEditable && !editorReadonly && activeEditor == 'workbench.editor.notebook'
+- key: alt+f
+  command: editor.action.formatDocument
+  when: editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor
+- key: alt+f
+  command: editor.action.formatDocument.none
+  when: editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly
+- key: alt+f
+  command: notebook.format
+  when: notebookEditable && !editorTextFocus && activeEditor == 'workbench.editor.notebook'
+
+  #
+  # --- line delete ---
+
+  # disable previous key
+- key: ctrl+shift+k
+  command: '-editor.action.deleteLines'
+  when: textInputFocus && !editorReadonly
+
+  # delete line
+- key: alt+d
+  command: editor.action.deleteLines
+  when: textInputFocus && !editorReadonly
+
+  #
+  # --- line select ---
+
+  # disable previous key
+- key: ctrl+l
+  command: '-expandLineSelection'
+  when: textInputFocus
+
+  # expand
+- key: alt+e
+  command: expandLineSelection
+  when: textInputFocus
+
+  #
+  # --- navigation ---
+
+  # disable previous keys
+- key: alt+left
+  command: '-workbench.action.navigateBack'
+  when: canNavigateBack
+- key: alt+right
+  command: '-workbench.action.navigateForward'
+  when: canNavigateForward
+
+  # go back
+- key: alt+oem_comma
+  command: workbench.action.navigateBack
+
+  # go forward
+- key: alt+oem_period
+  command: workbench.action.navigateForward
+
+  #
+  # --- rename ---
+
+  # disable previous key
+- key: f2
+  command: '-editor.action.rename'
+  when: editorHasRenameProvider && editorTextFocus && !editorReadonly
+
+  # rename
+- key: alt+r
+  command: editor.action.rename
+  when: editorHasRenameProvider && editorTextFocus && !editorReadonly
+
+  #
+  # --- quick fixes ---
+
+  # disable previous keys
+- key: ctrl+oem_period
+  command: '-editor.action.quickFix'
+  when: editorHasCodeActionsProvider && editorTextFocus && !editorReadonly
+- key: ctrl+oem_period
+  command: '-problems.action.showQuickFixes'
+  when: problemFocus
+
+  # show quick fixes
+- key: alt+x
+  command: editor.action.quickFix
+  when: editorHasCodeActionsProvider && editorTextFocus && !editorReadonly
+- key: alt+x
+  command: problems.action.showQuickFixes
+  when: problemFocus
+
+  #
+  # --- smart select ---
+
+  # disable previous keys
+- key: shift+alt+right
+  command: '-editor.action.smartSelect.expand'
+  when: editorTextFocus
+- key: shift+alt+left
+  command: '-editor.action.smartSelect.shrink'
+  when: editorTextFocus
+
+  # expand
+- key: alt+a
+  command: editor.action.smartSelect.expand
+  when: editorTextFocus
+
+  # shrink
+- key: alt+z
+  command: editor.action.smartSelect.shrink
+  when: editorTextFocus
+
+  #
+  # --- snippets ---
+
+  # disable previous keys
+- key: tab
+  command: '-jumpToNextSnippetPlaceholder'
+  when: editorTextFocus && hasNextTabstop && inSnippetMode
+- key: shift+tab
+  command: '-jumpToPrevSnippetPlaceholder'
+  when: editorTextFocus && hasPrevTabstop && inSnippetMode
+
+  # navigating a snippet
+- key: alt+w
+  command: jumpToNextSnippetPlaceholder
+  when: editorTextFocus && hasNextTabstop && inSnippetMode
+- key: alt+shift+w
+  command: jumpToPrevSnippetPlaceholder
+  when: editorTextFocus && hasPrevTabstop && inSnippetMode
+
+  #
+  # --- suggestions ---
+
+  # disable previous key
+- key: ctrl+space
+  command: '-editor.action.triggerSuggest'
+  when: editorHasCompletionItemProvider && textInputFocus && !editorReadonly
+
+  # show suggestions - [H]elp
+- key: alt+h
+  command: editor.action.triggerSuggest
+  when: editorHasCompletionItemProvider && textInputFocus && !editorReadonly
+
+  # navigate to the first suggestion - usually the most fitting snippet
+- key: alt+q
+  command: selectFirstSuggestion
+
+  #
+  # --- tabs ---
+
+  # disable previous keys
+- key: ctrl+k ctrl+pagedown
+  command: '-workbench.action.nextEditorInGroup'
+- key: ctrl+k ctrl+pageup
+  command: '-workbench.action.previousEditorInGroup'
+- key: ctrl+k ctrl+left
+  command: '-workbench.action.focusLeftGroup'
+- key: ctrl+k ctrl+right
+  command: '-workbench.action.focusRightGroup'
+- key: ctrl+alt+right
+  command: '-workbench.action.moveEditorToNextGroup'
+- key: ctrl+alt+left
+  command: '-workbench.action.moveEditorToPreviousGroup'
+- key: ctrl+f4
+  command: '-workbench.action.closeActiveEditor'
+- key: ctrl+w
+  command: '-workbench.action.closeActiveEditor'
+- key: ctrl+k w
+  command: '-workbench.action.closeEditorsInGroup'
+
+  # navigating tabs
+- key: alt+1
+  command: workbench.action.previousEditorInGroup
+- key: alt+2
+  command: workbench.action.nextEditorInGroup
+
+  # navigating tab groups
+- key: ctrl+1
+  command: workbench.action.focusPreviousGroup
+- key: ctrl+2
+  command: workbench.action.focusNextGroup
+
+  # move tab
+- key: alt+oem_4
+  command: workbench.action.moveEditorLeftInGroup
+- key: alt+oem_6
+  command: workbench.action.moveEditorRightInGroup
+- key: alt+right
+
+  # move tab into group
+- key: ctrl+oem_4
+  command: workbench.action.moveEditorToPreviousGroup
+- key: ctrl+oem_6
+  command: workbench.action.moveEditorToNextGroup
+
+  # close tab
+- key: alt+oem_3
+  command: workbench.action.closeActiveEditor
+
+  # close all tabs in group
+- key: ctrl+oem_3
+  command: workbench.action.closeEditorsInGroup
+
+  #
+  # --- terminal ---
+
+  # disable previous key
+- key: ctrl+oem_3
+  command: '-workbench.action.terminal.toggleTerminal'
+  when: terminal.active
+
+  # toggle terminal
+- key: ctrl+tab
+  command: workbench.action.terminal.toggleTerminal
+  when: terminal.active
+
+  # split terminal
+- key: ctrl+shift+tab
+  command: workbench.action.terminal.splitInActiveWorkspace
+
+  # kill all terminals
+- key: ctrl+delete
+  command: workbench.action.terminal.killAll
+
+  #
+  # --- Custom commands ---
+
+  # run project
+- key: f2
+  command: extension.multiCommand.execute
+  args:
+    sequence: [multiCommand.runProject]
+
+  # run tests
+- key: f3
+  command: extension.multiCommand.execute
+  args:
+    sequence: [multiCommand.runTests]

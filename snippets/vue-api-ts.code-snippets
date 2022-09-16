@@ -1,0 +1,139 @@
+// Vue API (TS only)
+{
+  "ref<>()": {
+    "prefix": "#rt",
+    "body": ["ref<$2>($1)"],
+    "description": "Ref-with-Type"
+  },
+  "const name = ref<>()": {
+    "prefix": "#nrt",
+    "body": ["const ${1:name} = ref<$3>($2)"],
+    "description": "Named-Ref-with-Type"
+  },
+  "$ref<>()": {
+    "prefix": "#$rt",
+    "body": ["\\$ref<$2>($1)"],
+    "description": "$macro-Ref-with-Type"
+  },
+  "const name = $ref<>()": {
+    "prefix": "#$nrt",
+    "body": ["const ${1:name} = \\$ref<$3>($2)"],
+    "description": "$macro-Named-Ref-with-Type"
+  },
+  "let name = $ref<>()": {
+    "prefix": "#$lnrt",
+    "body": ["let ${1:name} = \\$ref<$3>($2)"],
+    "description": "$macro-Let-Named-Ref-with-Type"
+  },
+
+  "computed<>(() => )": {
+    "prefix": "#ct",
+    "body": ["computed<$2>(() => $1)"],
+    "description": "Computed-with-Type"
+  },
+  "computed<>(() => { })": {
+    "prefix": "#cbt",
+    "body": ["computed<$1>(() => {", "  $0", "})"],
+    "description": "Computed-with-Body-and-Type"
+  },
+  "const name = computed<>(() => )": {
+    "prefix": "#nct",
+    "body": ["const ${1:name} = computed<$3>(() => $2)"],
+    "description": "Named-Computed-with-Type"
+  },
+  "const name = computed<>(() => { })": {
+    "prefix": "#ncbt",
+    "body": ["const ${1:name} = computed<$2>(() => {", "  $0", "})"],
+    "description": "Named-Computed-with-Body-and-Type"
+  },
+
+  "$computed<>(() => )": {
+    "prefix": "#$ct",
+    "body": ["\\$computed<$2>(() => $1)"],
+    "description": "$macro-Computed-with-Type"
+  },
+  "$computed<>(() => { })": {
+    "prefix": "#$cbt",
+    "body": ["\\$computed<$1>(() => {", "  $0", "})"],
+    "description": "$macro-Computed-with-Body-and-Type"
+  },
+  "const name = $computed<>(() => )": {
+    "prefix": "#$nct",
+    "body": ["const ${1:name} = \\$computed<$3>(() => $2)"],
+    "description": "$macro-Named-Computed-with-Type"
+  },
+  "const name = $computed<>(() => { })": {
+    "prefix": "#$ncbt",
+    "body": ["const ${1:name} = \\$computed<$2>(() => {", "  $0", "})"],
+    "description": "$macro-Named-Computed-with-Body-and-Type"
+  },
+
+  "const props = defineProps<>()": {
+    "prefix": "#dp",
+    "body": ["const props = defineProps<${1:Props}>()"],
+    "description": "Define-Props"
+  },
+  "const props = defineProps<{ }>()": {
+    "prefix": "#dpb",
+    "body": ["const props = defineProps<{ $1 }>()"],
+    "description": "Define-Props-with-Body"
+  },
+  "const props = defineProps<Props>()": {
+    "prefix": "dpi",
+    "body": [
+      "interface Props {",
+      "  $0",
+      "}",
+      "",
+      "const props = defineProps<Props>()"
+    ],
+    "description": "Define-Props-with-Interface"
+  },
+  "const { } = defineProps<>()": {
+    "prefix": "#$dp",
+    "body": ["const { $2 } = defineProps<${1:Props}>()"],
+    "description": "$macro-Define-Props"
+  },
+  "const { } = defineProps<{ }>()": {
+    "prefix": "#$dpb",
+    "body": ["const { $2 } = defineProps<{ $1 }>()"],
+    "description": "$macro-Define-Props-with-Body"
+  },
+  "const { } = defineProps<Props>()": {
+    "prefix": "#$dpi",
+    "body": [
+      "interface Props {",
+      "  $1",
+      "}",
+      "",
+      "const { $2 } = defineProps<Props>()"
+    ],
+    "description": "$macro-Define-Props-with-Interface"
+  },
+
+  "const emit = defineEmits<>()": {
+    "prefix": "#de",
+    "body": ["const emit = defineEmits<${1:Emits}>()"],
+    "description": "Define-Emits"
+  },
+  "const emit = defineEmits<{ }>()": {
+    "prefix": "#deb",
+    "body": [
+      "const emit = defineEmits<{",
+      "  (e: \"${1:event}\", value: ${2:number}): void$3",
+      "}>()"
+    ],
+    "description": "Define-Emits-with-Body"
+  },
+  "const emit = defineEmits<Emits>()": {
+    "prefix": "#dei",
+    "body": [
+      "interface Emits {",
+      "  (e: \"${1:event}\", value: ${2:number}): void$0",
+      "}",
+      "",
+      "const emit = defineEmits<Emits>()"
+    ],
+    "description": "Define-Emits-with-Interface"
+  }
+}

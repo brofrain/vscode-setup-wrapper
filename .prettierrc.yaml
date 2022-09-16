@@ -1,0 +1,4 @@
+endOfLine: auto
+quoteProps: consistent
+semi: false
+singleQuote: true

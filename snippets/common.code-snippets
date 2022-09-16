@@ -1,0 +1,170 @@
+// Common (JS & TS)
+{
+  "if () { }": {
+    "prefix": "#if",
+    "body": ["if (${1:condition}) {", "  $0", "}"],
+    "description": "IF"
+  },
+  "if () { } else { }": {
+    "prefix": "#ife",
+    "body": ["if (${1:condition}) {", "  $2", "} else {", "  $3", "}"],
+    "description": "IF-Else"
+  },
+
+  "Object.keys()": {
+    "prefix": "#ok",
+    "body": ["Object.keys(${1:object})"],
+    "description": "Object-Keys"
+  },
+  "Object.values()": {
+    "prefix": "#ov",
+    "body": ["Object.values(${1:object})"],
+    "description": "Object-Values"
+  },
+  "Object.entries()": {
+    "prefix": "#oe",
+    "body": ["Object.entries(${1:object})"],
+    "description": "Object-Entries"
+  },
+  "Object.fromEntries()": {
+    "prefix": "#ofe",
+    "body": ["Object.fromEntries(${1:entries})"],
+    "description": "Object-From-Entries"
+  },
+  "Object.assign()": {
+    "prefix": "#oa",
+    "body": ["Object.assign(${1:target}, ${2:source})"],
+    "description": "Object-Assign"
+  },
+
+  "for (const key in object) { }": {
+    "prefix": "#fin",
+    "body": ["for (const ${2:key} in ${1:object}) {", "  $0", "}"],
+    "description": "For-IN"
+  },
+  "for (const item of array) { }": {
+    "prefix": "#fof",
+    "body": ["for (const ${2:item} of ${1:array}) {", "  $0", "}"],
+    "description": "For-OF"
+  },
+
+  "for (const item of Object.values(object)) { }": {
+    "prefix": "#fofv",
+    "body": [
+      "for (const ${2:item} of Object.values(${1:object})) {",
+      "  $0",
+      "}"
+    ],
+    "description": "For-OF-object-Values"
+  },
+  "for (const [k, v] of Object.entries(object)) { }": {
+    "prefix": "#fofe",
+    "body": [
+      "for (const [${2:k}, ${3:v}] of Object.entries(${1:object})) {",
+      "  $0",
+      "}"
+    ],
+    "description": "For-OF-object-Entries"
+  },
+
+  "() => ": {
+    "prefix": "#f",
+    "body": ["($1) => $0"],
+    "description": "Function"
+  },
+  "() => { }": {
+    "prefix": "#fb",
+    "body": ["($1) => {", "  $0", "}"],
+    "description": "Function-with-Body"
+  },
+  "const name = () => ": {
+    "prefix": "#nf",
+    "body": ["const ${1:name} = ($2) => $0"],
+    "description": "Named-Function"
+  },
+  "const name = () => { }": {
+    "prefix": "#nfb",
+    "body": ["const ${1:name} = ($2) => {", "  $0", "}"],
+    "description": "Named-Function-with-Body"
+  },
+
+  "async () => ": {
+    "prefix": "#af",
+    "body": ["async ($1) => $0"],
+    "description": "Async-Function"
+  },
+  "async () => new Promise((resolve) => { })": {
+    "prefix": "#afp",
+    "body": ["async ($1) => new Promise((resolve) => {", "  $0", "})"],
+    "description": "Async-Function-with-Promise"
+  },
+  "async () => { }": {
+    "prefix": "#afb",
+    "body": ["async ($1) => {", "  $0", "}"],
+    "description": "Async-Function-with-Body"
+  },
+  "const name = async () => ": {
+    "prefix": "#naf",
+    "body": ["const ${1:name} = async ($2) => $0"],
+    "description": "Named-Async-Function"
+  },
+  "const name = async () => new Promise((resolve) => { })": {
+    "prefix": "#nafp",
+    "body": [
+      "const ${1:name} = async ($2) => new Promise((resolve) => {",
+      "  $0",
+      "})"
+    ],
+    "description": "Named-Async-Function-with-Promise"
+  },
+  "const name = async () => { }": {
+    "prefix": "#nafb",
+    "body": ["const ${1:name} = async ($2) => {", "  $0", "}"],
+    "description": "Named-Async-Function-with-Body"
+  },
+
+  "return ": {
+    "prefix": "#re",
+    "body": ["return $0"],
+    "description": "REturn"
+  },
+
+  "return { }": {
+    "prefix": "#reb",
+    "body": ["return { $0 }"],
+    "description": "REturn-with-Body"
+  },
+
+  "import { } from \"module\"": {
+    "prefix": "#im",
+    "body": ["import { $2 } from \"${1:module}\""],
+    "description": "IMport"
+  },
+  "import module from \"module\"": {
+    "prefix": "#imd",
+    "body": ["import ${2:module} from \"${1:module}\""],
+    "description": "IMport-Default"
+  },
+
+  "export ": {
+    "prefix": "#ex",
+    "body": ["export $0"],
+    "description": "EXport"
+  },
+  "export default ": {
+    "prefix": "#exd",
+    "body": ["export default $0"],
+    "description": "EXport-DEfault"
+  },
+  "export const name = ": {
+    "prefix": "#exn",
+    "body": ["export const ${1:name} = $0"],
+    "description": "EXport-Named"
+  },
+
+  "console.log()": {
+    "prefix": "#cl",
+    "body": ["console.log(${1:message})"],
+    "description": "Console-Log"
+  }
+}

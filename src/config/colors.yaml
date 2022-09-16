@@ -1,0 +1,94 @@
+white: '#fff'
+
+dark:
+  '+': '#41454b'
+  ~: '#262a31'
+  '-': '#1f232a'
+  '--': '#1b1f25'
+
+light:
+  ~: '#fffe'
+  '-': '#fffc'
+  '--': '#fff9'
+  '---': '#fff6'
+  '----': '#fff3'
+
+accent:
+  '++': '#a287fb'
+  '+': '#7f66f8'
+  ~: '#764dfa'
+  _alt: '#1054c2'
+
+success:
+  ~: '#44cf6c'
+warn:
+  '+': '#f6b851'
+  ~: '#f4ac32'
+error:
+  '+': '#ff6567'
+  ~: '#ff3e41'
+
+input:
+  _background: 'dark+'
+  _foreground: 'light'
+  _placeholder: 'light--'
+
+git:
+  _add: 'accent++'
+  _modify:
+    ~: '#48d7f2'
+    _staged: 'accent+'
+  _delete:
+    ~: '#ff3e41'
+    _staged: '#c14594'
+  _untrack: '#43e156'
+  _ignore: 'light---'
+  _conflict: '#f88038'
+
+changes:
+  _add: 'success'
+  _modify: '#38aecc'
+  _delete: 'error'
+  _conflict: '#f88038'
+
+match:
+  _current: 'accent'
+  _other: '#0aa0ff'
+
+syntax:
+  _comment: '#9097a3'
+  _control: '#f04fff'
+  _css-class: 'syntax_var'
+  _css-keyword: 'syntax_keyword'
+  _css-property: 'syntax_property'
+  _css-pseudo: 'syntax_var-param'
+  _css-var: 'syntax_var-const'
+  _function: '#00d5ff'
+  _function-method: 'syntax_function'
+  _html-attr: 'accent++'
+  _html-bracket: 'light--'
+  _html-component: 'syntax_function'
+  _html-tag: '#ff5555'
+  _keyword: 'accent++'
+  _md-keyword: 'accent+'
+  _md-raw: 'syntax_string'
+  _number: '#1bffb8'
+  _operator: 'accent++'
+  _primitive: '#70ff80'
+  _property: 'accent++'
+  _regexp: '#2fff7f'
+  _regexp-chars: '#1fa653'
+  _regexp-group: 'syntax_keyword'
+  _regexp-operator: 'syntax_operator'
+  _semicolon: 'light--'
+  _string: '#99c24d'
+  _string-escape: '#f95e98'
+  _type: 'accent+'
+  _unit: 'light--'
+  _var: '#f8ea87'
+  _var-const: '#ffbd58'
+  _var-param: '#ff9362'
+  _var-property: 'light'
+  _var-property-const: '#ffcea6'
+  _var-property-enum: 'syntax_var-const'
+  _var-this: 'syntax_keyword'

@@ -1,0 +1,147 @@
+// Vue API (JS & TS)
+{
+  "ref()": {
+    "prefix": "#r",
+    "body": ["ref($1)"],
+    "description": "Ref"
+  },
+  "const name = ref()": {
+    "prefix": "#nr",
+    "body": ["const ${1:name} = ref($2)"],
+    "description": "Named-Ref"
+  },
+
+  "$ref()": {
+    "prefix": "#$r",
+    "body": ["\\$ref($1)"],
+    "description": "$macro-Ref"
+  },
+  "const name = $ref()": {
+    "prefix": "#$nr",
+    "body": ["const ${1:name} = \\$ref($2)"],
+    "description": "$macro-Named-Ref"
+  },
+  "let name = $ref()": {
+    "prefix": "#$lnr",
+    "body": ["let ${1:name} = \\$ref($2)"],
+    "description": "$macro-Let-Named-Ref"
+  },
+
+  "computed(() => )": {
+    "prefix": "#c",
+    "body": ["computed(() => $1)"],
+    "description": "Computed"
+  },
+  "computed(() => { })": {
+    "prefix": "#cb",
+    "body": ["computed(() => {", "  $0", "})"],
+    "description": "Computed-with-Body"
+  },
+  "const name = computed(() => )": {
+    "prefix": "#nc",
+    "body": ["const ${1:name} = computed(() => $2)"],
+    "description": "Named-Computed"
+  },
+  "const name = computed(() => { })": {
+    "prefix": "#ncb",
+    "body": ["const ${1:name} = computed(() => {", "  $0", "})"],
+    "description": "Named-Computed-with-Body"
+  },
+
+  "$computed(() => )": {
+    "prefix": "#$c",
+    "body": ["\\$computed(() => $1)"],
+    "description": "$macro-Computed"
+  },
+  "$computed(() => { })": {
+    "prefix": "#$cb",
+    "body": ["\\$computed(() => {", "  $0", "})"],
+    "description": "$macro-Computed-with-Body"
+  },
+  "const name = $computed(() => )": {
+    "prefix": "#$nc",
+    "body": ["const ${1:name} = \\$computed(() => $2)"],
+    "description": "$macro-Named-Computed"
+  },
+  "const name = $computed(() => { })": {
+    "prefix": "#$ncb",
+    "body": ["const ${1:name} = \\$computed(() => {", "  $0", "})"],
+    "description": "$macro-Named-Computed-with-Body"
+  },
+
+  "return $$()": {
+    "prefix": "#$re",
+    "body": ["return $$($0)"],
+    "description": "$macro-REturn"
+  },
+
+  "return $$({ })": {
+    "prefix": "#$reb",
+    "body": ["return $$({ $0 })"],
+    "description": "$macro-REturn-with-Body"
+  },
+
+  "export const useStore = defineStore(\"store\", () => { })": {
+    "prefix": "#pstore",
+    "body": [
+      "import { defineStore } from \"pinia\"",
+      "",
+      "export const use${1:Store} = defineStore(\"${2:store}\", () => {",
+      "  $0",
+      "",
+      "  return { }",
+      "})"
+    ],
+    "description": "pinia-STORE"
+  },
+
+  "(SSR) export const useStore = defineStore(\"store\", () => { })": {
+    "prefix": "#pstoress",
+    "body": [
+      "import { acceptHMRUpdate, defineStore } from \"pinia\"",
+      "",
+      "export const use${1:Store} = defineStore(\"${2:store}\", () => {",
+      "  $0",
+      "",
+      "  return { }",
+      "})",
+      "",
+      "if (import.meta.hot) {",
+      "  import.meta.hot.accept(acceptHMRUpdate(use${1:Store}, import.meta.hot));",
+      "}"
+    ],
+    "description": "pinia-STORE-SSr"
+  },
+
+  "($) export const useStore = defineStore(\"store\", () => { })": {
+    "prefix": "#$pstore",
+    "body": [
+      "import { defineStore } from \"pinia\"",
+      "",
+      "export const use${1:Store} = defineStore(\"${2:store}\", () => {",
+      "  $0",
+      "",
+      "  return $$({ })",
+      "})"
+    ],
+    "description": "$macro-pinia-STORE"
+  },
+
+  "($) (SSR) export const useStore = defineStore(\"store\", () => { })": {
+    "prefix": "#$pstoress",
+    "body": [
+      "import { acceptHMRUpdate, defineStore } from \"pinia\"",
+      "",
+      "export const use${1:Store} = defineStore(\"${2:store}\", () => {",
+      "  $0",
+      "",
+      "  return $$({ })",
+      "})",
+      "",
+      "if (import.meta.hot) {",
+      "  import.meta.hot.accept(acceptHMRUpdate(use${1:Store}, import.meta.hot));",
+      "}"
+    ],
+    "description": "$macro-pinia-STORE-SSr"
+  }
+}

@@ -1,0 +1,35 @@
+// Vue Template
+{
+  "<template>": {
+    "prefix": "vtp",
+    "body": ["<template>", "  $0", "</template>"],
+    "description": "TemPlate"
+  },
+
+  "v-for=\"item in array\" :key=\"item\"": {
+    "prefix": "vfor",
+    "body": ["v-for=\"${2:item} in ${1:array}\" :key=\"${3:item}\""]
+  },
+  "v-for=\"(item, i) in array\" :key=\"item\"": {
+    "prefix": "vfori",
+    "body": ["v-for=\"(${2:item}, ${3:i}) in ${1:array}\" :key=\"${4:i}\""]
+  },
+  "v-if=\"\"": {
+    "prefix": "vif",
+    "body": ["v-if=\"${1:condition}\""]
+  },
+  "v-show=\"\"": {
+    "prefix": "vshow",
+    "body": ["v-show=\"${1:condition}\""]
+  },
+  "v-model=\"\"": {
+    "prefix": "vmod",
+    "body": ["v-model=\"${1:variable}\""],
+    "description": "V-MODel"
+  },
+  "v-model:property=\"\"": {
+    "prefix": "vmodn",
+    "body": ["v-model:${1:property}=\"${2:variable}\""],
+    "description": "V-MODel-Named"
+  }
+}

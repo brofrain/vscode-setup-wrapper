@@ -1,0 +1,19 @@
+// Vue API (JS only)
+{
+  "const props = defineProps({ })": {
+    "prefix": ".dp",
+    "body": ["const props = defineProps({ $1 })"],
+    "description": "Define-Props"
+  },
+  "const { } = defineProps({ })": {
+    "prefix": "#$dp",
+    "body": ["const { $2 } = defineProps({ $1 })"],
+    "description": "$macro-Define-Props"
+  },
+
+  "const emit = defineEmits([])": {
+    "prefix": ".de",
+    "body": ["const emit = defineEmits([\"${1:event}\"])"],
+    "description": "Define-Emits"
+  }
+}

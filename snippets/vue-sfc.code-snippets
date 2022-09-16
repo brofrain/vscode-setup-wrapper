@@ -1,0 +1,30 @@
+// Vue SFC
+{
+  "<script setup>": {
+    "prefix": "vjs",
+    "body": ["<script setup>", "$0", "</script>"]
+  },
+  "<script setup lang=\"ts\">": {
+    "prefix": "vts",
+    "body": ["<script setup lang=\"ts\">", "$0", "</script>"]
+  },
+
+  "<template>": {
+    "prefix": "vtp",
+    "body": ["<template>", "  $0", "</template>"]
+  },
+
+  "<style lang=\"css\" scoped>": {
+    "prefix": "vcss",
+    "body": ["<style lang=\"css\" scoped>", "$0", "</style>"]
+  },
+  "<style lang=\"scss\" scoped>": {
+    "prefix": "vscss",
+    "body": ["<style lang=\"scss\" scoped>", "$0", "</style>"]
+  },
+
+  "<route lang=\"yaml\">": {
+    "prefix": "vroute",
+    "body": ["<route lang=\"yaml\">", "$0", "</route>"]
+  }
+}

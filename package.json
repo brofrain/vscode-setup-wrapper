@@ -1,0 +1,5518 @@
+{
+  "name": "vscode-setup-wrapper",
+  "displayName": "Setup",
+  "description": "2022-09-13 20:56:28",
+  "version": "0.0.116",
+  "publisher": "brofrain",
+  "license": "MIT",
+  "categories": [
+    "Extension Packs",
+    "Themes"
+  ],
+  "engines": {
+    "node": "^18.6.0",
+    "pnpm": ">=7.5.0",
+    "vscode": ">=1.68.0"
+  },
+  "scripts": {
+    "build:json": "ts-node-esm src/build.ts",
+    "build:vsix": "vsce package --out dist/setup.vsix --no-dependencies --allow-missing-repository",
+    "build": "pnpm build:json && pnpm build:vsix",
+    "tsc": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "_moduleAliases": {
+    "~": "src"
+  },
+  "devDependencies": {
+    "@types/node": "^18.6.1",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "@typescript-eslint/utils": "^5.31.0",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsonc": "^2.3.1",
+    "eslint-plugin-markdown": "^3.0.0",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-unicorn": "^43.0.2",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "eslint-plugin-yml": "^1.0.0",
+    "jsonc-eslint-parser": "^2.1.0",
+    "module-alias": "^2.2.2",
+    "pnpm": "^7.6.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4",
+    "vsce": "^2.10.0",
+    "yaml": "^2.1.1",
+    "yaml-eslint-parser": "^1.0.1"
+  },
+  "extensionPack": [
+    "adpyke.codesnap",
+    "antfu.browse-lite",
+    "antfu.iconify",
+    "antfu.unocss",
+    "bierner.markdown-preview-github-styles",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "edonet.vscode-command-runner",
+    "esbenp.prettier-vscode",
+    "Gruntfuggly.todo-tree",
+    "lacroixdavid1.vscode-format-context-menu",
+    "mcright.auto-save",
+    "mikestead.dotenv",
+    "mrmlnc.vscode-scss",
+    "ms-playwright.playwright",
+    "ms-vsliveshare.vsliveshare",
+    "pkief.material-icon-theme",
+    "rust-lang.rust-analyzer",
+    "ryuta46.multi-command",
+    "slevesque.vscode-multiclip",
+    "streetsidesoftware.code-spell-checker",
+    "TabNine.tabnine-vscode",
+    "tamasfe.even-better-toml",
+    "usernamehw.errorlens",
+    "vue.volar",
+    "vue.vscode-typescript-vue-plugin",
+    "wmaurer.change-case"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Custom",
+        "uiTheme": "vs-dark",
+        "path": "tmp/themes/custom.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "vue",
+        "path": "snippets/vue-sfc.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "snippets/vue-html.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "snippets/vue-api-common.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "snippets/vue-api-js.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "snippets/vue-api-common.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "snippets/vue-api-ts.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "snippets/common.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "snippets/common.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "snippets/ts.code-snippets"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+q",
+        "command": "-workbench.action.quickOpenView"
+      },
+      {
+        "key": "ctrl+q",
+        "command": "-workbench.action.quickOpenNavigateNextInViewPicker",
+        "when": "inQuickOpen && inViewsPicker"
+      },
+      {
+        "key": "ctrl+shift+q",
+        "command": "-workbench.action.quickOpenNavigatePreviousInViewPicker",
+        "when": "inQuickOpen && inViewsPicker"
+      },
+      {
+        "key": "ctrl+k ctrl+alt+s",
+        "command": "-git.stageSelectedRanges",
+        "when": "isInDiffEditor"
+      },
+      {
+        "key": "shift+alt+a",
+        "command": "-editor.action.blockComment",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "alt+w",
+        "command": "-toggleSearchEditorWholeWord",
+        "when": "inSearchEditor && searchInputBoxFocus"
+      },
+      {
+        "key": "alt+w",
+        "command": "-toggleFindWholeWord",
+        "when": "editorFocus"
+      },
+      {
+        "key": "alt+w",
+        "command": "-toggleSearchWholeWord",
+        "when": "searchViewletFocus"
+      },
+      {
+        "key": "alt+z",
+        "command": "-editor.action.toggleWordWrap"
+      },
+      {
+        "key": "ctrl+pagedown",
+        "command": "-workbench.action.nextEditor"
+      },
+      {
+        "key": "ctrl+pageup",
+        "command": "-workbench.action.previousEditor"
+      },
+      {
+        "key": "shift+alt+1",
+        "command": "-workbench.action.moveEditorToFirstGroup"
+      },
+      {
+        "key": "ctrl+k ctrl+1",
+        "command": "-editor.foldLevel1",
+        "when": "editorTextFocus && foldingEnabled"
+      },
+      {
+        "key": "ctrl+shift+1",
+        "command": "-editor.action.replaceOne",
+        "when": "editorFocus && findWidgetVisible"
+      },
+      {
+        "key": "ctrl+shift+1",
+        "command": "-search.action.replace",
+        "when": "matchFocus && replaceActive && searchViewletVisible"
+      },
+      {
+        "key": "ctrl+shift+1",
+        "command": "-search.action.replaceAllInFile",
+        "when": "fileMatchFocus && replaceActive && searchViewletVisible"
+      },
+      {
+        "key": "ctrl+shift+1",
+        "command": "-search.action.replaceAllInFolder",
+        "when": "folderMatchFocus && replaceActive && searchViewletVisible"
+      },
+      {
+        "key": "ctrl+k ctrl+2",
+        "command": "-editor.foldLevel2",
+        "when": "editorTextFocus && foldingEnabled"
+      },
+      {
+        "key": "alt+left",
+        "command": "-workbench.action.quickInputBack",
+        "when": "inQuickOpen"
+      },
+      {
+        "key": "ctrl+right",
+        "command": "-breadcrumbs.focusNext",
+        "when": "breadcrumbsActive && breadcrumbsVisible"
+      },
+      {
+        "key": "ctrl+right",
+        "command": "-breadcrumbs.focusNextWithPicker",
+        "when": "breadcrumbsActive && breadcrumbsVisible && listFocus && !inputFocus"
+      },
+      {
+        "key": "ctrl+right",
+        "command": "-cursorWordEndRight",
+        "when": "textInputFocus && !accessibilityModeEnabled"
+      },
+      {
+        "key": "ctrl+shift+alt+right",
+        "command": "-cursorColumnSelectRight",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+shift+right",
+        "command": "-cursorWordEndRightSelect",
+        "when": "textInputFocus && !accessibilityModeEnabled"
+      },
+      {
+        "key": "ctrl+k right",
+        "command": "-views.moveViewRight",
+        "when": "focusedView != ''"
+      },
+      {
+        "key": "ctrl+k right",
+        "command": "-workbench.action.moveActiveEditorGroupRight"
+      },
+      {
+        "key": "ctrl+k left",
+        "command": "-workbench.action.moveActiveEditorGroupLeft"
+      },
+      {
+        "key": "ctrl+left",
+        "command": "-breadcrumbs.focusPrevious",
+        "when": "breadcrumbsActive && breadcrumbsVisible"
+      },
+      {
+        "key": "ctrl+left",
+        "command": "-breadcrumbs.focusPreviousWithPicker",
+        "when": "breadcrumbsActive && breadcrumbsVisible && listFocus && !inputFocus"
+      },
+      {
+        "key": "ctrl+shift+alt+left",
+        "command": "-cursorColumnSelectLeft",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+left",
+        "command": "-cursorWordLeft",
+        "when": "textInputFocus && !accessibilityModeEnabled"
+      },
+      {
+        "key": "ctrl+shift+left",
+        "command": "-cursorWordLeftSelect",
+        "when": "textInputFocus && !accessibilityModeEnabled"
+      },
+      {
+        "key": "ctrl+left",
+        "command": "-list.collapseAll",
+        "when": "listFocus && !inputFocus"
+      },
+      {
+        "key": "ctrl+k left",
+        "command": "-views.moveViewLeft",
+        "when": "focusedView != ''"
+      },
+      {
+        "key": "ctrl+shift+space",
+        "command": "-editor.action.triggerParameterHints",
+        "when": "editorHasSignatureHelpProvider && editorTextFocus"
+      },
+      {
+        "key": "ctrl+f2",
+        "command": "-editor.action.changeAll",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+shift+f2",
+        "command": "-editor.action.linkedEditing",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "shift+alt+r",
+        "command": "-revealFileInOS",
+        "when": "!editorFocus"
+      },
+      {
+        "key": "alt+r",
+        "command": "-toggleSearchEditorRegex",
+        "when": "inSearchEditor && searchInputBoxFocus"
+      },
+      {
+        "key": "alt+r",
+        "command": "-toggleFindRegex",
+        "when": "editorFocus"
+      },
+      {
+        "key": "alt+r",
+        "command": "-toggleSearchRegex",
+        "when": "searchViewletFocus"
+      },
+      {
+        "key": "shift+alt+c",
+        "command": "-copyFilePath",
+        "when": "!editorFocus"
+      },
+      {
+        "key": "alt+c",
+        "command": "-toggleSearchEditorCaseSensitive",
+        "when": "inSearchEditor && searchInputBoxFocus"
+      },
+      {
+        "key": "shift+alt+c",
+        "command": "-search.action.copyPath",
+        "when": "fileMatchOrFolderMatchWithResourceFocus"
+      },
+      {
+        "key": "alt+c",
+        "command": "-toggleFindCaseSensitive",
+        "when": "editorFocus"
+      },
+      {
+        "key": "alt+c",
+        "command": "-toggleSearchCaseSensitive",
+        "when": "searchViewletFocus"
+      },
+      {
+        "key": "shift+alt+oem_period",
+        "command": "-editor.action.autoFix",
+        "when": "editorTextFocus && !editorReadonly && supportedCodeAction =~ /(\\s|^)quickfix\\b/"
+      },
+      {
+        "key": "f2",
+        "command": "-remote.tunnel.label",
+        "when": "tunnelViewFocus && tunnelType == 'Forwarded' && tunnelViewMultiSelection == 'undefined'"
+      },
+      {
+        "key": "f2",
+        "command": "-renameFile",
+        "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+      },
+      {
+        "key": "ctrl+k f2",
+        "command": "-togglePeekWidgetFocus",
+        "when": "inReferenceSearchEditor || referenceSearchVisible"
+      },
+      {
+        "key": "f3",
+        "command": "-list.find",
+        "when": "listFocus && listSupportsFind"
+      },
+      {
+        "key": "alt+f3",
+        "command": "-editor.action.dirtydiff.next",
+        "when": "editorTextFocus && !textCompareEditorActive"
+      },
+      {
+        "key": "shift+alt+f3",
+        "command": "-editor.action.dirtydiff.previous",
+        "when": "editorTextFocus && !textCompareEditorActive"
+      },
+      {
+        "key": "f3",
+        "command": "-editor.action.nextMatchFindAction",
+        "when": "editorFocus"
+      },
+      {
+        "key": "ctrl+f3",
+        "command": "-editor.action.nextSelectionMatchFindAction",
+        "when": "editorFocus"
+      },
+      {
+        "key": "shift+f3",
+        "command": "-editor.action.previousMatchFindAction",
+        "when": "editorFocus"
+      },
+      {
+        "key": "ctrl+shift+f3",
+        "command": "-editor.action.previousSelectionMatchFindAction",
+        "when": "editorFocus"
+      },
+      {
+        "key": "shift+alt+h",
+        "command": "-references-view.showCallHierarchy",
+        "when": "editorHasCallHierarchyProvider"
+      },
+      {
+        "key": "shift+alt+h",
+        "command": "-editor.showCallHierarchy",
+        "when": "editorHasCallHierarchyProvider && editorTextFocus && !inReferenceSearchEditor"
+      },
+      {
+        "key": "shift+alt+h",
+        "command": "-editor.showIncomingCalls",
+        "when": "callHierarchyVisible && callHierarchyDirection == 'outgoingCalls'"
+      },
+      {
+        "key": "shift+alt+h",
+        "command": "-editor.showOutgoingCalls",
+        "when": "callHierarchyVisible && callHierarchyDirection == 'incomingCalls'"
+      },
+      {
+        "key": "shift+alt+h",
+        "command": "-editor.showSubtypes",
+        "when": "typeHierarchyVisible && typeHierarchyDirection == 'supertypes'"
+      },
+      {
+        "key": "shift+alt+h",
+        "command": "-editor.showSupertypes",
+        "when": "typeHierarchyVisible && typeHierarchyDirection == 'subtypes'"
+      },
+      {
+        "key": "ctrl+k ctrl+c",
+        "command": "-editor.action.addCommentLine",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+k ctrl+u",
+        "command": "-editor.action.removeCommentLine",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+k ctrl+oem_2",
+        "command": "-editor.foldAllBlockComments",
+        "when": "editorTextFocus && foldingEnabled"
+      },
+      {
+        "key": "ctrl+shift+tab",
+        "command": "-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
+        "when": "!activeEditorGroupEmpty"
+      },
+      {
+        "key": "ctrl+tab",
+        "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+        "when": "!activeEditorGroupEmpty"
+      },
+      {
+        "key": "ctrl+tab",
+        "command": "-workbench.action.quickOpenNavigateNextInEditorPicker",
+        "when": "inEditorsPicker && inQuickOpen"
+      },
+      {
+        "key": "ctrl+shift+tab",
+        "command": "-workbench.action.quickOpenNavigatePreviousInEditorPicker",
+        "when": "inEditorsPicker && inQuickOpen"
+      },
+      {
+        "key": "ctrl+shift+oem_4",
+        "command": "-editor.fold",
+        "when": "editorTextFocus && foldingEnabled"
+      },
+      {
+        "key": "ctrl+k ctrl+oem_4",
+        "command": "-editor.foldRecursively",
+        "when": "editorTextFocus && foldingEnabled"
+      },
+      {
+        "key": "ctrl+oem_4",
+        "command": "-editor.action.outdentLines",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+oem_6",
+        "command": "-editor.action.indentLines",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+shift+oem_6",
+        "command": "-editor.unfold",
+        "when": "editorTextFocus && foldingEnabled"
+      },
+      {
+        "key": "ctrl+k ctrl+oem_6",
+        "command": "-editor.unfoldRecursively",
+        "when": "editorTextFocus && foldingEnabled"
+      },
+      {
+        "key": "ctrl+end",
+        "command": "-cursorBottom",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+shift+end",
+        "command": "-cursorBottomSelect",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+end",
+        "command": "-interactive.scrollToBottom",
+        "when": "resourceScheme == 'vscode-interactive'"
+      },
+      {
+        "key": "ctrl+home",
+        "command": "-cursorTop",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+shift+home",
+        "command": "-cursorTopSelect",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+home",
+        "command": "-interactive.scrollToTop",
+        "when": "resourceScheme == 'vscode-interactive'"
+      },
+      {
+        "key": "ctrl+pagedown",
+        "command": "-workbench.action.debug.nextConsole",
+        "when": "inDebugRepl"
+      },
+      {
+        "key": "ctrl+k ctrl+down",
+        "command": "-workbench.action.focusBelowGroup"
+      },
+      {
+        "key": "ctrl+k down",
+        "command": "-workbench.action.moveActiveEditorGroupDown"
+      },
+      {
+        "key": "ctrl+shift+pagedown",
+        "command": "-workbench.action.moveEditorRightInGroup"
+      },
+      {
+        "key": "ctrl+shift+alt+down",
+        "command": "-cursorColumnSelectDown",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+shift+alt+pagedown",
+        "command": "-cursorColumnSelectPageDown",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+shift+down",
+        "command": "-cursorDownSelect",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+down",
+        "command": "-focusNextCodeAction",
+        "when": "CodeActionMenuVisible"
+      },
+      {
+        "key": "ctrl+down",
+        "command": "-keybindings.editor.focusKeybindings",
+        "when": "inKeybindings && inKeybindingsSearch"
+      },
+      {
+        "key": "ctrl+down",
+        "command": "-list.scrollDown",
+        "when": "listFocus && !inputFocus"
+      },
+      {
+        "key": "ctrl+down",
+        "command": "-problems.action.focusProblemsFromFilter",
+        "when": "problemsFilterFocus"
+      },
+      {
+        "key": "ctrl+down",
+        "command": "-scrollLineDown",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+down",
+        "command": "-search.focus.nextInputBox",
+        "when": "inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible"
+      },
+      {
+        "key": "ctrl+k down",
+        "command": "-views.moveViewDown",
+        "when": "focusedView != ''"
+      },
+      {
+        "key": "ctrl+pageup",
+        "command": "-workbench.action.debug.prevConsole",
+        "when": "inDebugRepl"
+      },
+      {
+        "key": "ctrl+k ctrl+up",
+        "command": "-workbench.action.focusAboveGroup"
+      },
+      {
+        "key": "ctrl+k up",
+        "command": "-workbench.action.moveActiveEditorGroupUp"
+      },
+      {
+        "key": "ctrl+shift+pageup",
+        "command": "-workbench.action.moveEditorLeftInGroup"
+      },
+      {
+        "key": "ctrl+shift+alt+pageup",
+        "command": "-cursorColumnSelectPageUp",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+shift+alt+up",
+        "command": "-cursorColumnSelectUp",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+shift+up",
+        "command": "-cursorUpSelect",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+up",
+        "command": "-focusPreviousCodeAction",
+        "when": "CodeActionMenuVisible"
+      },
+      {
+        "key": "ctrl+up",
+        "command": "-list.scrollUp",
+        "when": "listFocus && !inputFocus"
+      },
+      {
+        "key": "ctrl+up",
+        "command": "-scrollLineUp",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "ctrl+up",
+        "command": "-search.action.focusSearchFromResults",
+        "when": "firstMatchFocus && searchViewletVisible"
+      },
+      {
+        "key": "ctrl+up",
+        "command": "-search.focus.previousInputBox",
+        "when": "inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible && !searchInputBoxFocus"
+      },
+      {
+        "key": "ctrl+k up",
+        "command": "-views.moveViewUp",
+        "when": "focusedView != ''"
+      },
+      {
+        "key": "ctrl+delete",
+        "command": "-deleteWordRight",
+        "when": "textInputFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+shift+v",
+        "command": "-notebook.cell.pasteAbove",
+        "when": "notebookEditorFocused && !inputFocus"
+      },
+      {
+        "key": "ctrl+shift+v",
+        "command": "-workbench.action.terminal.paste",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "ctrl+shift+v",
+        "command": "-markdown.showPreview",
+        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+      },
+      {
+        "key": "ctrl+shift+r",
+        "command": "-command-runner.run"
+      },
+      {
+        "key": "ctrl+alt+r",
+        "command": "-command-runner.runInTerminal"
+      },
+      {
+        "key": "alt+s",
+        "command": "-gitlens.showQuickRepoStatus",
+        "when": "!gitlens:disabled && config.gitlens.keymap == 'alternate'"
+      },
+      {
+        "key": "alt+right",
+        "command": "-gitlens.key.alt+right",
+        "when": "gitlens:key:alt+right"
+      },
+      {
+        "key": "alt+left",
+        "command": "-gitlens.key.alt+left",
+        "when": "gitlens:key:alt+left"
+      },
+      {
+        "key": "ctrl+right",
+        "command": "-gitlens.key.ctrl+right",
+        "when": "gitlens:key:ctrl+right"
+      },
+      {
+        "key": "ctrl+left",
+        "command": "-gitlens.key.ctrl+left",
+        "when": "gitlens:key:ctrl+left"
+      },
+      {
+        "key": "alt+c",
+        "command": "-gitlens.showQuickCommitFileDetails",
+        "when": "editorTextFocus && !gitlens:disabled && config.gitlens.keymap == 'alternate'"
+      },
+      {
+        "key": "alt+oem_2",
+        "command": "-gitlens.gitCommands",
+        "when": "!gitlens:disabled && config.gitlens.keymap == 'alternate'"
+      },
+      {
+        "key": "alt+oem_period",
+        "command": "-gitlens.diffWithNext",
+        "when": "editorTextFocus && !isInDiffEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /revision/"
+      },
+      {
+        "key": "alt+oem_period",
+        "command": "-gitlens.diffWithNextInDiffLeft",
+        "when": "editorTextFocus && isInDiffEditor && !isInDiffRightEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /revision/"
+      },
+      {
+        "key": "alt+oem_period",
+        "command": "-gitlens.diffWithNextInDiffRight",
+        "when": "editorTextFocus && isInDiffRightEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /revision/"
+      },
+      {
+        "key": "alt+oem_comma",
+        "command": "-gitlens.diffWithPrevious",
+        "when": "editorTextFocus && !isInDiffEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /tracked/"
+      },
+      {
+        "key": "alt+oem_comma",
+        "command": "-gitlens.diffWithPreviousInDiffLeft",
+        "when": "editorTextFocus && isInDiffEditor && !isInDiffRightEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /tracked/"
+      },
+      {
+        "key": "alt+oem_comma",
+        "command": "-gitlens.diffWithPreviousInDiffRight",
+        "when": "editorTextFocus && isInDiffRightEditor && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /tracked/"
+      },
+      {
+        "key": "shift+alt+oem_period",
+        "command": "-gitlens.diffWithWorking",
+        "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /revision/"
+      },
+      {
+        "key": "shift+alt+oem_comma",
+        "command": "-gitlens.diffLineWithPrevious",
+        "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /tracked/"
+      },
+      {
+        "key": "alt+oem_comma",
+        "command": "-gitlens.key.alt+,",
+        "when": "gitlens:key:,"
+      },
+      {
+        "key": "alt+oem_period",
+        "command": "-gitlens.key.alt+.",
+        "when": "gitlens:key:."
+      },
+      {
+        "key": "alt+h",
+        "command": "-gitlens.showQuickFileHistory",
+        "when": "!gitlens:disabled && config.gitlens.keymap == 'alternate'"
+      },
+      {
+        "key": "shift+alt+h",
+        "command": "-gitlens.showQuickRepoHistory",
+        "when": "!gitlens:disabled && config.gitlens.keymap == 'alternate'"
+      },
+      {
+        "key": "ctrl+shift+v",
+        "command": "-multiclip.paste",
+        "when": "editorTextFocus && editorLangId != 'markdown'"
+      },
+      {
+        "key": "alt+oem_period",
+        "command": "-tabnine.snippet-suggestion",
+        "when": "tabnine.snippet-suggestion:enabled"
+      },
+      {
+        "key": "f2",
+        "command": "-debug.renameWatchExpression",
+        "when": "watchExpressionsFocused"
+      },
+      {
+        "key": "f2",
+        "command": "-debug.setVariable",
+        "when": "variablesFocused"
+      },
+      {
+        "key": "f5",
+        "command": "-workbench.action.debug.start",
+        "when": "debuggersAvailable && debugState == 'inactive'"
+      },
+      {
+        "key": "shift+f5",
+        "command": "-workbench.action.debug.stop",
+        "when": "inDebugMode && !focusedSessionIsAttach"
+      },
+      {
+        "key": "f5",
+        "command": "-workbench.action.debug.continue",
+        "when": "debugState == 'stopped'"
+      },
+      {
+        "key": "shift+f5",
+        "command": "-workbench.action.debug.disconnect",
+        "when": "focusedSessionIsAttach && inDebugMode"
+      },
+      {
+        "key": "ctrl+shift+f5",
+        "command": "-workbench.action.debug.restart",
+        "when": "inDebugMode"
+      },
+      {
+        "key": "f5",
+        "command": "-debug.openView",
+        "when": "!debuggersAvailable"
+      },
+      {
+        "key": "ctrl+f5",
+        "command": "-debug.openView",
+        "when": "!debuggersAvailable"
+      },
+      {
+        "key": "shift+f9",
+        "command": "-editor.debug.action.toggleInlineBreakpoint",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "f9",
+        "command": "-editor.debug.action.toggleBreakpoint",
+        "when": "debuggersAvailable && editorTextFocus"
+      },
+      {
+        "key": "alt+f9",
+        "command": "-editor.action.nextCommentThreadAction",
+        "when": "editorFocus"
+      },
+      {
+        "key": "shift+alt+f9",
+        "command": "-editor.action.previousCommentThreadAction",
+        "when": "editorFocus"
+      },
+      {
+        "key": "f10",
+        "command": "-extension.node-debug.startWithStopOnEntry",
+        "when": "!inDebugMode && debugConfigurationType == 'node' || !inDebugMode && debugConfigurationType == 'pwa-extensionHost' || !inDebugMode && debugConfigurationType == 'pwa-node'"
+      },
+      {
+        "key": "f10",
+        "command": "-workbench.action.debug.stepOver",
+        "when": "debugState == 'stopped'"
+      },
+      {
+        "key": "ctrl+shift+oem_4",
+        "command": "-notebook.fold",
+        "when": "notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'"
+      },
+      {
+        "key": "ctrl+shift+oem_6",
+        "command": "-notebook.unfold",
+        "when": "notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'"
+      },
+      {
+        "key": "ctrl+end",
+        "command": "-notebook.focusBottom",
+        "when": "notebookEditorFocused && !inputFocus"
+      },
+      {
+        "key": "ctrl+home",
+        "command": "-notebook.focusTop",
+        "when": "notebookEditorFocused && !inputFocus"
+      },
+      {
+        "key": "ctrl+down",
+        "command": "-notebook.cell.focusInOutput",
+        "when": "notebookCellHasOutputs && notebookEditorFocused"
+      },
+      {
+        "key": "ctrl+down",
+        "command": "-notebook.focusNextEditor",
+        "when": "notebookEditorFocused && notebookOutputFocused"
+      },
+      {
+        "key": "ctrl+up",
+        "command": "-notebook.cell.focusOutOutput",
+        "when": "notebookEditorFocused"
+      },
+      {
+        "key": "alt+oem_6",
+        "command": "-editor.action.inlineSuggest.showNext",
+        "when": "inlineSuggestionVisible && !editorReadonly"
+      },
+      {
+        "key": "alt+oem_4",
+        "command": "-editor.action.inlineSuggest.showPrevious",
+        "when": "inlineSuggestionVisible && !editorReadonly"
+      },
+      {
+        "key": "ctrl+space",
+        "command": "-toggleSuggestionDetails",
+        "when": "suggestWidgetVisible && textInputFocus"
+      },
+      {
+        "key": "ctrl+alt+space",
+        "command": "-toggleSuggestionFocus",
+        "when": "suggestWidgetVisible && textInputFocus"
+      },
+      {
+        "key": "ctrl+pageup",
+        "command": "-selectPrevPageSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+      },
+      {
+        "key": "ctrl+up",
+        "command": "-selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+      },
+      {
+        "key": "ctrl+pagedown",
+        "command": "-selectNextPageSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+      },
+      {
+        "key": "ctrl+down",
+        "command": "-selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+      },
+      {
+        "key": "ctrl+u",
+        "command": "-cursorUndo",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "alt+1",
+        "command": "-workbench.action.openEditorAtIndex1"
+      },
+      {
+        "key": "alt+2",
+        "command": "-workbench.action.openEditorAtIndex2"
+      },
+      {
+        "key": "alt+3",
+        "command": "-workbench.action.openEditorAtIndex3"
+      },
+      {
+        "key": "alt+4",
+        "command": "-workbench.action.openEditorAtIndex4"
+      },
+      {
+        "key": "alt+5",
+        "command": "-workbench.action.openEditorAtIndex5"
+      },
+      {
+        "key": "alt+6",
+        "command": "-workbench.action.openEditorAtIndex6"
+      },
+      {
+        "key": "alt+7",
+        "command": "-workbench.action.openEditorAtIndex7"
+      },
+      {
+        "key": "alt+8",
+        "command": "-workbench.action.openEditorAtIndex8"
+      },
+      {
+        "key": "alt+9",
+        "command": "-workbench.action.openEditorAtIndex9"
+      },
+      {
+        "key": "ctrl+1",
+        "command": "-workbench.action.focusFirstEditorGroup"
+      },
+      {
+        "key": "ctrl+2",
+        "command": "-workbench.action.focusSecondEditorGroup"
+      },
+      {
+        "key": "ctrl+3",
+        "command": "-workbench.action.focusThirdEditorGroup"
+      },
+      {
+        "key": "ctrl+4",
+        "command": "-workbench.action.focusFourthEditorGroup"
+      },
+      {
+        "key": "ctrl+5",
+        "command": "-workbench.action.focusFifthEditorGroup"
+      },
+      {
+        "key": "ctrl+6",
+        "command": "-workbench.action.focusSixthEditorGroup"
+      },
+      {
+        "key": "ctrl+7",
+        "command": "-workbench.action.focusSeventhEditorGroup"
+      },
+      {
+        "key": "ctrl+8",
+        "command": "-workbench.action.focusEighthEditorGroup"
+      },
+      {
+        "key": "alt+w",
+        "command": "-workbench.action.terminal.toggleFindWholeWord",
+        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "alt+z",
+        "command": "-workbench.action.terminal.sizeToContentWidth",
+        "when": "terminalFocus && terminalHasBeenCreated && terminalIsOpen || terminalFocus && terminalIsOpen && terminalProcessSupported"
+      },
+      {
+        "key": "ctrl+shift+2",
+        "command": "-workbench.action.terminal.sendSequence",
+        "when": "terminalFocus"
+      },
+      {
+        "key": "alt+r",
+        "command": "-workbench.action.terminal.toggleFindRegex",
+        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "alt+c",
+        "command": "-workbench.action.terminal.toggleFindCaseSensitive",
+        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "f2",
+        "command": "-workbench.action.terminal.renameInstance",
+        "when": "terminalHasBeenCreated && terminalTabsFocus && terminalTabsSingularSelection || terminalProcessSupported && terminalTabsFocus && terminalTabsSingularSelection"
+      },
+      {
+        "key": "f3",
+        "command": "-workbench.action.terminal.findNext",
+        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "shift+f3",
+        "command": "-workbench.action.terminal.findPrevious",
+        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "ctrl+shift+oem_3",
+        "command": "-workbench.action.terminal.new",
+        "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+      },
+      {
+        "key": "ctrl+shift+5",
+        "command": "-workbench.action.terminal.split",
+        "when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
+      },
+      {
+        "key": "ctrl+shift+5",
+        "command": "-workbench.action.terminal.splitInstance",
+        "when": "terminalProcessSupported && terminalTabsFocus"
+      },
+      {
+        "key": "ctrl+down",
+        "command": "-workbench.action.terminal.navigationModeFocusNext",
+        "when": "accessibilityModeEnabled && terminalA11yTreeFocus && terminalProcessSupported || accessibilityModeEnabled && terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "ctrl+alt+pagedown",
+        "command": "-workbench.action.terminal.scrollDown",
+        "when": "terminalFocus && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocus && terminalProcessSupported && !terminalAltBufferActive"
+      },
+      {
+        "key": "ctrl+shift+down",
+        "command": "-workbench.action.terminal.selectToNextCommand",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "ctrl+up",
+        "command": "-workbench.action.terminal.navigationModeFocusPrevious",
+        "when": "accessibilityModeEnabled && terminalA11yTreeFocus && terminalProcessSupported || accessibilityModeEnabled && terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "ctrl+alt+pageup",
+        "command": "-workbench.action.terminal.scrollUp",
+        "when": "terminalFocus && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocus && terminalProcessSupported && !terminalAltBufferActive"
+      },
+      {
+        "key": "ctrl+shift+up",
+        "command": "-workbench.action.terminal.selectToPreviousCommand",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "ctrl+delete",
+        "command": "-workbench.action.terminal.sendSequence",
+        "when": "terminalFocus"
+      },
+      {
+        "key": "delete",
+        "command": "-workbench.action.terminal.killInstance",
+        "when": "terminalHasBeenCreated && terminalTabsFocus || terminalIsOpen && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
+      },
+      {
+        "key": "ctrl+f4",
+        "command": "-workbench.action.terminal.killEditor",
+        "when": "terminalEditorFocus && terminalFocus && terminalHasBeenCreated && resourceScheme == 'vscode-terminal' || terminalEditorFocus && terminalFocus && terminalProcessSupported && resourceScheme == 'vscode-terminal'"
+      },
+      {
+        "key": "ctrl+w",
+        "command": "-workbench.action.terminal.killEditor",
+        "when": "terminalEditorFocus && terminalFocus && terminalHasBeenCreated && resourceScheme == 'vscode-terminal' || terminalEditorFocus && terminalFocus && terminalProcessSupported && resourceScheme == 'vscode-terminal'"
+      },
+      {
+        "key": "alt+right",
+        "command": "-workbench.action.terminal.focusNextPane",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "alt+left",
+        "command": "-workbench.action.terminal.focusPreviousPane",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+      },
+      {
+        "key": "ctrl+oem_1 ctrl+a",
+        "command": "-testing.debugAll"
+      },
+      {
+        "key": "ctrl+oem_1 ctrl+e",
+        "command": "-testing.debugFailTests"
+      },
+      {
+        "key": "ctrl+oem_1 ctrl+l",
+        "command": "-testing.debugLastRun"
+      },
+      {
+        "key": "ctrl+oem_1 ctrl+c",
+        "command": "-testing.debugAtCursor",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+oem_1 ctrl+f",
+        "command": "-testing.debugCurrentFile",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "alt+f8",
+        "command": "-testing.goToNextMessage",
+        "when": "editorFocus && testing.isPeekVisible"
+      },
+      {
+        "key": "shift+alt+f8",
+        "command": "-testing.goToPreviousMessage",
+        "when": "editorFocus && testing.isPeekVisible"
+      },
+      {
+        "key": "ctrl+oem_1 ctrl+m",
+        "command": "-testing.openOutputPeek"
+      },
+      {
+        "key": "ctrl+oem_1 ctrl+r",
+        "command": "-testing.refreshTests",
+        "when": "testing.canRefresh"
+      },
+      {
+        "key": "ctrl+oem_1 e",
+        "command": "-testing.reRunFailTests"
+      },
+      {
+        "key": "ctrl+oem_1 l",
+        "command": "-testing.reRunLastRun"
+      },
+      {
+        "key": "ctrl+oem_1 a",
+        "command": "-testing.runAll"
+      },
+      {
+        "key": "ctrl+oem_1 c",
+        "command": "-testing.runAtCursor",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+oem_1 f",
+        "command": "-testing.runCurrentFile",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+oem_1 ctrl+o",
+        "command": "-testing.showMostRecentOutput",
+        "when": "testing.hasAnyResults"
+      },
+      {
+        "key": "ctrl+oem_1 ctrl+i",
+        "command": "-testing.toggleInlineTestOutput"
+      },
+      {
+        "key": "alt+h",
+        "command": "-testing.toggleTestingPeekHistory",
+        "when": "testing.isPeekVisible"
+      },
+      {
+        "key": "ctrl+f5",
+        "command": "browse-lite.open"
+      },
+      {
+        "key": "f5",
+        "command": "browse-lite.controls.refresh"
+      },
+      {
+        "key": "ctrl+shift+f5",
+        "command": "browse-lite.controls.debug"
+      },
+      {
+        "key": "f9",
+        "command": "eslint.restart"
+      },
+      {
+        "key": "ctrl+shift+v",
+        "command": "multiclip.list"
+      },
+      {
+        "key": "ctrl+oem_2",
+        "command": "-editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "alt+c",
+        "command": "editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "shift+alt+i",
+        "command": "-editor.action.insertCursorAtEndOfEachLineSelected",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+shift+l",
+        "command": "-selectAllSearchEditorMatches",
+        "when": "inSearchEditor"
+      },
+      {
+        "key": "ctrl+shift+l",
+        "command": "-editor.action.selectHighlights",
+        "when": "editorFocus"
+      },
+      {
+        "key": "ctrl+shift+l",
+        "command": "-addCursorsAtSearchResults",
+        "when": "fileMatchOrMatchFocus && searchViewletVisible"
+      },
+      {
+        "key": "alt+right",
+        "command": "cursorWordPartRight"
+      },
+      {
+        "key": "alt+left",
+        "command": "cursorWordPartLeft"
+      },
+      {
+        "key": "shift+alt+left",
+        "command": "cursorWordPartLeftSelect"
+      },
+      {
+        "key": "shift+alt+right",
+        "command": "cursorWordPartRightSelect"
+      },
+      {
+        "key": "ctrl+alt+right",
+        "command": "editor.action.insertCursorAtEndOfEachLineSelected",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "alt+s",
+        "command": "selectAllSearchEditorMatches",
+        "when": "inSearchEditor"
+      },
+      {
+        "key": "alt+s",
+        "command": "editor.action.selectHighlights",
+        "when": "editorFocus"
+      },
+      {
+        "key": "alt+s",
+        "command": "addCursorsAtSearchResults",
+        "when": "fileMatchOrMatchFocus && searchViewletVisible"
+      },
+      {
+        "key": "shift+alt+f",
+        "command": "-notebook.formatCell",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && inCompositeEditor && notebookEditable && !editorReadonly && activeEditor == 'workbench.editor.notebook'"
+      },
+      {
+        "key": "shift+alt+f",
+        "command": "-editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+      },
+      {
+        "key": "shift+alt+f",
+        "command": "-editor.action.formatDocument.none",
+        "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
+      },
+      {
+        "key": "shift+alt+f",
+        "command": "-notebook.format",
+        "when": "notebookEditable && !editorTextFocus && activeEditor == 'workbench.editor.notebook'"
+      },
+      {
+        "key": "alt+f",
+        "command": "notebook.formatCell",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && inCompositeEditor && notebookEditable && !editorReadonly && activeEditor == 'workbench.editor.notebook'"
+      },
+      {
+        "key": "alt+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+      },
+      {
+        "key": "alt+f",
+        "command": "editor.action.formatDocument.none",
+        "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
+      },
+      {
+        "key": "alt+f",
+        "command": "notebook.format",
+        "when": "notebookEditable && !editorTextFocus && activeEditor == 'workbench.editor.notebook'"
+      },
+      {
+        "key": "ctrl+shift+k",
+        "command": "-editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+      },
+      {
+        "key": "alt+d",
+        "command": "editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+l",
+        "command": "-expandLineSelection",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "alt+e",
+        "command": "expandLineSelection",
+        "when": "textInputFocus"
+      },
+      {
+        "key": "alt+left",
+        "command": "-workbench.action.navigateBack",
+        "when": "canNavigateBack"
+      },
+      {
+        "key": "alt+right",
+        "command": "-workbench.action.navigateForward",
+        "when": "canNavigateForward"
+      },
+      {
+        "key": "alt+oem_comma",
+        "command": "workbench.action.navigateBack"
+      },
+      {
+        "key": "alt+oem_period",
+        "command": "workbench.action.navigateForward"
+      },
+      {
+        "key": "f2",
+        "command": "-editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "alt+r",
+        "command": "editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+oem_period",
+        "command": "-editor.action.quickFix",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+oem_period",
+        "command": "-problems.action.showQuickFixes",
+        "when": "problemFocus"
+      },
+      {
+        "key": "alt+x",
+        "command": "editor.action.quickFix",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "alt+x",
+        "command": "problems.action.showQuickFixes",
+        "when": "problemFocus"
+      },
+      {
+        "key": "shift+alt+right",
+        "command": "-editor.action.smartSelect.expand",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "shift+alt+left",
+        "command": "-editor.action.smartSelect.shrink",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "alt+a",
+        "command": "editor.action.smartSelect.expand",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "alt+z",
+        "command": "editor.action.smartSelect.shrink",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "tab",
+        "command": "-jumpToNextSnippetPlaceholder",
+        "when": "editorTextFocus && hasNextTabstop && inSnippetMode"
+      },
+      {
+        "key": "shift+tab",
+        "command": "-jumpToPrevSnippetPlaceholder",
+        "when": "editorTextFocus && hasPrevTabstop && inSnippetMode"
+      },
+      {
+        "key": "alt+w",
+        "command": "jumpToNextSnippetPlaceholder",
+        "when": "editorTextFocus && hasNextTabstop && inSnippetMode"
+      },
+      {
+        "key": "alt+shift+w",
+        "command": "jumpToPrevSnippetPlaceholder",
+        "when": "editorTextFocus && hasPrevTabstop && inSnippetMode"
+      },
+      {
+        "key": "ctrl+space",
+        "command": "-editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly"
+      },
+      {
+        "key": "alt+h",
+        "command": "editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly"
+      },
+      {
+        "key": "alt+q",
+        "command": "selectFirstSuggestion"
+      },
+      {
+        "key": "ctrl+k ctrl+pagedown",
+        "command": "-workbench.action.nextEditorInGroup"
+      },
+      {
+        "key": "ctrl+k ctrl+pageup",
+        "command": "-workbench.action.previousEditorInGroup"
+      },
+      {
+        "key": "ctrl+k ctrl+left",
+        "command": "-workbench.action.focusLeftGroup"
+      },
+      {
+        "key": "ctrl+k ctrl+right",
+        "command": "-workbench.action.focusRightGroup"
+      },
+      {
+        "key": "ctrl+alt+right",
+        "command": "-workbench.action.moveEditorToNextGroup"
+      },
+      {
+        "key": "ctrl+alt+left",
+        "command": "-workbench.action.moveEditorToPreviousGroup"
+      },
+      {
+        "key": "ctrl+f4",
+        "command": "-workbench.action.closeActiveEditor"
+      },
+      {
+        "key": "ctrl+w",
+        "command": "-workbench.action.closeActiveEditor"
+      },
+      {
+        "key": "ctrl+k w",
+        "command": "-workbench.action.closeEditorsInGroup"
+      },
+      {
+        "key": "alt+1",
+        "command": "workbench.action.previousEditorInGroup"
+      },
+      {
+        "key": "alt+2",
+        "command": "workbench.action.nextEditorInGroup"
+      },
+      {
+        "key": "ctrl+1",
+        "command": "workbench.action.focusPreviousGroup"
+      },
+      {
+        "key": "ctrl+2",
+        "command": "workbench.action.focusNextGroup"
+      },
+      {
+        "key": "alt+oem_4",
+        "command": "workbench.action.moveEditorLeftInGroup"
+      },
+      {
+        "key": "alt+oem_6",
+        "command": "workbench.action.moveEditorRightInGroup"
+      },
+      {
+        "key": "alt+right"
+      },
+      {
+        "key": "ctrl+oem_4",
+        "command": "workbench.action.moveEditorToPreviousGroup"
+      },
+      {
+        "key": "ctrl+oem_6",
+        "command": "workbench.action.moveEditorToNextGroup"
+      },
+      {
+        "key": "alt+oem_3",
+        "command": "workbench.action.closeActiveEditor"
+      },
+      {
+        "key": "ctrl+oem_3",
+        "command": "workbench.action.closeEditorsInGroup"
+      },
+      {
+        "key": "ctrl+oem_3",
+        "command": "-workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+      },
+      {
+        "key": "ctrl+tab",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+      },
+      {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.terminal.splitInActiveWorkspace"
+      },
+      {
+        "key": "ctrl+delete",
+        "command": "workbench.action.terminal.killAll"
+      },
+      {
+        "key": "f2",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "multiCommand.runProject"
+          ]
+        }
+      },
+      {
+        "key": "f3",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "multiCommand.runTests"
+          ]
+        }
+      },
+      {
+        "key": "[KeyA]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "a"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyA]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "A"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyB]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyB]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "B"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyC]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "c"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyC]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "C"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyD]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "d"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyD]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "D"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyE]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "e"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyE]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "E"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyF]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "f"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyF]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "F"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyG]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "g"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyG]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "G"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyH]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "h"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyH]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "H"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyI]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "i"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyI]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "I"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyJ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "j"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyJ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "J"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyK]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "k"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyK]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "K"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyL]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "l"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyL]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "L"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyM]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "m"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyM]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "M"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyN]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "n"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyN]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "N"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyO]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "o"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyO]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "O"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyP]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "p"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyP]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "P"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyQ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "q"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyQ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "Q"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyR]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "r"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyR]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "R"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyS]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "s"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyS]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "S"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyT]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "t"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyT]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "T"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyU]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "u"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyU]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "U"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyW]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "w"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyW]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "W"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyX]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "x"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyX]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "X"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyY]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "y"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyY]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "Y"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyZ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "z"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyZ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "Z"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Digit1]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Numpad1]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Digit2]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "2"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Numpad2]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "2"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Digit3]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "3"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Numpad3]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "3"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Digit4]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "4"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Numpad4]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "4"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Digit5]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "5"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Numpad5]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "5"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Digit6]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "6"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Numpad6]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "6"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Digit7]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "7"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Numpad7]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "7"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Digit8]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "8"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Numpad8]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "8"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Digit9]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "9"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Numpad9]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "9"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Digit0]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "0"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Numpad0]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "0"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit1]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "!"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit2]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "@"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit3]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "#"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit4]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "$"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit5]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "%"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit6]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "^"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit7]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "&"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit8]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "*"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit9]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "("
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit0]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": ")"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Space]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": " "
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Tab]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "tab"
+          ]
+        }
+      },
+      {
+        "key": "[Enter]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "\n"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Backspace]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "deleteLeft"
+          ]
+        }
+      },
+      {
+        "key": "[Delete]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "deleteRight"
+          ]
+        }
+      },
+      {
+        "key": "[Backquote]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "`"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Minus]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "-"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Minus]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "_"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Equal]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "="
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Equal]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "+"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[BracketLeft]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "["
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[BracketLeft]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "{"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[BracketRight]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "]"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[BracketRight]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "}"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Backslash]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "\\"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Backslash]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "|"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Semicolon]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Semicolon]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": ":"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Quote]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "'"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Quote]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "\""
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Comma]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": ","
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Comma]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "<"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Period]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Period]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": ">"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[Slash]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "/"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "shift+[Slash]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "?"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[NumpadMultiply]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "*"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[NumpadAdd]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "+"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[NumpadComma]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": ","
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[NumpadSubtract]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "-"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[NumpadDivide]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            {
+              "command": "type",
+              "args": {
+                "text": "/"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "[KeyA]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "a"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyA]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "A"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyB]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "b"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyB]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "B"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyC]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "c"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyC]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "C"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyD]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "d"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyD]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "D"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyE]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "e"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyE]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "E"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyF]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "f"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyF]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "F"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyG]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "g"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyG]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "G"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyH]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "h"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyH]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "H"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyI]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "i"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyI]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "I"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyJ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "j"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyJ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "J"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyK]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "k"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyK]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "K"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyL]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "l"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyL]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "L"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyM]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "m"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyM]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "M"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyN]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "n"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyN]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "N"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyO]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "o"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyO]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "O"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyP]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "p"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyP]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "P"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyQ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "q"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyQ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "Q"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyR]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "r"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyR]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "R"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyS]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "s"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyS]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "S"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyT]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "t"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyT]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "T"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyU]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "u"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyU]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "U"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyW]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "w"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyW]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "W"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyX]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "x"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyX]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "X"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyY]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "y"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyY]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "Y"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[KeyZ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "z"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[KeyZ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "Z"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Digit1]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "1"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Numpad1]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "1"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Digit2]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "2"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Numpad2]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "2"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Digit3]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "3"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Numpad3]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "3"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Digit4]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "4"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Numpad4]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "4"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Digit5]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "5"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Numpad5]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "5"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Digit6]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "6"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Numpad6]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "6"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Digit7]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "7"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Numpad7]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "7"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Digit8]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "8"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Numpad8]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "8"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Digit9]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "9"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Numpad9]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "9"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Digit0]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "0"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Numpad0]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "0"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit1]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "!"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit2]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "@"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit3]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "#"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit4]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "$"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit5]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "%"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit6]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "^"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit7]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "&"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit8]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "*"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit9]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "("
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Digit0]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": ")"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Space]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": " "
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Tab]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "tab",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Enter]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "\n"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Backspace]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "deleteLeft",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Delete]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "deleteRight",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Backquote]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "`"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Minus]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "-"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Minus]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "_"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Equal]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "="
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Equal]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "+"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[BracketLeft]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "["
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[BracketLeft]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "{"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[BracketRight]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "]"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[BracketRight]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "}"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Backslash]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "\\"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Backslash]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "|"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Semicolon]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": ";"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Semicolon]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": ":"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Quote]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "'"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Quote]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "\""
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Comma]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": ","
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Comma]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "<"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Period]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "."
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Period]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": ">"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[Slash]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "/"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+[Slash]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "?"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[NumpadMultiply]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "*"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[NumpadAdd]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "+"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[NumpadComma]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": ","
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[NumpadSubtract]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "-"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "[NumpadDivide]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            {
+              "command": "type",
+              "args": {
+                "text": "/"
+              }
+            },
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+z",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "undo"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+z",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "undo",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+shift+z",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "redo"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+shift+z",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "redo",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+y",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "redo"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+y",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "redo",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "alt+d",
+        "command": "extension.multiCommand.execute",
+        "when": "textInputFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "editor.action.deleteLines"
+          ]
+        }
+      },
+      {
+        "key": "alt+d",
+        "command": "extension.multiCommand.execute",
+        "when": "textInputFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "editor.action.deleteLines",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "alt+up",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "editor.action.moveLinesUpAction"
+          ]
+        }
+      },
+      {
+        "key": "alt+up",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "editor.action.moveLinesUpAction",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "alt+down",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "editor.action.moveLinesDownAction"
+          ]
+        }
+      },
+      {
+        "key": "alt+down",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "editor.action.moveLinesDownAction",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+alt+down",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "editor.action.copyLinesDownAction"
+          ]
+        }
+      },
+      {
+        "key": "shift+alt+down",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "editor.action.copyLinesDownAction",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+alt+up",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "editor.action.copyLinesUpAction"
+          ]
+        }
+      },
+      {
+        "key": "shift+alt+up",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "editor.action.copyLinesUpAction",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "alt+c",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "editor.action.commentLine"
+          ]
+        }
+      },
+      {
+        "key": "alt+c",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "editor.action.commentLine",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "alt+x",
+        "command": "extension.multiCommand.execute",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "editor.action.quickFix"
+          ]
+        }
+      },
+      {
+        "key": "alt+x",
+        "command": "extension.multiCommand.execute",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "editor.action.quickFix",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+delete",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "editor.action.clipboardCutAction"
+          ]
+        }
+      },
+      {
+        "key": "shift+delete",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "editor.action.clipboardCutAction",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+x",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "editor.action.clipboardCutAction"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+x",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "editor.action.clipboardCutAction",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "shift+insert",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "editor.action.clipboardPasteAction"
+          ]
+        }
+      },
+      {
+        "key": "shift+insert",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "editor.action.clipboardPasteAction",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+v",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "editor.action.clipboardPasteAction"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+v",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "editor.action.clipboardPasteAction",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+x",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "multiclip.cut"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+x",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "multiclip.cut",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+shift+x",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "multiclip.cutMerge"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+shift+x",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "multiclip.cutMerge",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+v",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "multiclip.regularPaste"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+v",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "multiclip.regularPaste",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+shift+v",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'",
+        "args": {
+          "sequence": [
+            "workbench.action.toggleAutoSave",
+            "multiclip.list"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+shift+v",
+        "command": "extension.multiCommand.execute",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'",
+        "args": {
+          "sequence": [
+            "multiclip.list",
+            "workbench.action.toggleAutoSave"
+          ]
+        }
+      },
+      {
+        "key": "ctrl+s",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.files.save",
+            "workbench.action.toggleAutoSave"
+          ]
+        },
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(scss|typescript|vue)$/ && config.files.autoSave != 'off'"
+      },
+      {
+        "key": "ctrl+s",
+        "command": "extension.multiCommand.execute",
+        "args": {
+          "sequence": [
+            "workbench.action.files.save",
+            "workbench.action.toggleAutoSave"
+          ]
+        },
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^(?!(scss|typescript|vue)).*$/ && config.files.autoSave == 'off'"
+      }
+    ]
+  }
+}
